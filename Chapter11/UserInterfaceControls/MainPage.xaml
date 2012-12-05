@@ -1,0 +1,90 @@
+﻿<phone:PhoneApplicationPage x:Class="UserInterfaceControls.MainPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:System="clr-namespace:System;assembly=mscorlib"
+                            xmlns:local="clr-namespace:UserInterfaceControls"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            mc:Ignorable="d"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            shell:SystemTray.IsVisible="True">
+    <phone:PhoneApplicationPage.Resources>
+        <local:PageUrlToNameConverter x:Key="valueConverter" />
+        <DataTemplate x:Key="itemTemplate">
+            <Grid>
+                <HyperlinkButton Content="{Binding Converter={StaticResource valueConverter}}"
+                                 Width="600"
+                                 NavigateUri="{Binding}"
+                                 Padding="{StaticResource PhoneTouchTargetOverhang}"
+                                 HorizontalContentAlignment="Left" />
+            </Grid>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+        <!--Pivot Control-->
+        <phone:Pivot x:Name="pivot"
+                     Title="WINDOWS PHONE 8 IN ACTION"
+                     Loaded="pivot_Loaded">
+            <!--Pivot item one-->
+            <phone:PivotItem Header="building">
+                <ItemsControl ItemTemplate="{StaticResource itemTemplate}">
+                    <ItemsControl.Items>
+                        <System:String>/BuildingTheUI/TextBlockSample.xaml</System:String>
+                        <System:String>/BuildingTheUI/BorderSample.xaml</System:String>
+                        <System:String>/BuildingTheUI/ShapesSample.xaml</System:String>
+                        <System:String>/BuildingTheUI/ProgressBarSample.xaml</System:String>
+                        <System:String>/BuildingTheUI/ImageSample.xaml</System:String>
+                        <System:String>/BuildingTheUI/RichTextBoxSample.xaml</System:String>
+                    </ItemsControl.Items>
+                </ItemsControl>
+            </phone:PivotItem>
+
+            <!--Pivot item two-->
+            <phone:PivotItem Header="receiving">
+                <ItemsControl ItemTemplate="{StaticResource itemTemplate}">
+                    <ItemsControl.Items>
+                        <System:String>/ReceivingInput/ButtonSample.xaml</System:String>
+                        <System:String>/ReceivingInput/HyperlinkSample.xaml</System:String>
+                        <System:String>/ReceivingInput/CheckBoxSample.xaml</System:String>
+                        <System:String>/ReceivingInput/RadioButtonSample.xaml</System:String>
+                        <System:String>/ReceivingInput/TextBoxSample.xaml</System:String>
+                        <System:String>/ReceivingInput/InputScopeSample.xaml</System:String>
+                        <System:String>/ReceivingInput/SliderSample.xaml</System:String>
+                    </ItemsControl.Items>
+                </ItemsControl>
+            </phone:PivotItem>
+            <phone:PivotItem Header="transforming">
+                <ItemsControl ItemTemplate="{StaticResource itemTemplate}">
+                    <ItemsControl.Items>
+                        <System:String>/Transforming/MatrixTransformSample.xaml</System:String>
+                        <System:String>/Transforming/RotateTransformSample.xaml</System:String>
+                        <System:String>/Transforming/ScaleTransformSample.xaml</System:String>
+                        <System:String>/Transforming/SkewTransformSample.xaml</System:String>
+                        <System:String>/Transforming/TranslateTransformSample.xaml</System:String>
+                        <System:String>/Transforming/TransformGroupSample.xaml</System:String>
+                        <System:String>/Transforming/CompositeTransformSample.xaml</System:String>
+                        <System:String>/Transforming/ProjectionSample.xaml</System:String>
+                    </ItemsControl.Items>
+                </ItemsControl>
+            </phone:PivotItem>
+            <phone:PivotItem Header="toolkit">
+                <ItemsControl ItemTemplate="{StaticResource itemTemplate}">
+                    <ItemsControl.Items>
+                        <System:String>/Toolkit/ToggleSwitchSample.xaml</System:String>
+                        <System:String>/Toolkit/DateTimePickerSample.xaml</System:String>
+                        <System:String>/Toolkit/ContextMenuSample.xaml</System:String>
+                    </ItemsControl.Items>
+                </ItemsControl>
+            </phone:PivotItem>
+        </phone:Pivot>
+    </Grid>
+
+</phone:PhoneApplicationPage>

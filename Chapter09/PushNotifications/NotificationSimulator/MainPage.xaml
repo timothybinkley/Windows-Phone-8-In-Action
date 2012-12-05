@@ -1,0 +1,115 @@
+﻿<phone:PhoneApplicationPage x:Class="NotificationSimulator.MainPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            mc:Ignorable="d"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+        <!--Pivot Control-->
+        <phone:Pivot Title="WINDOWS PHONE 8 IN ACTION - SIMULATOR">
+
+            <phone:PivotItem Header="status">
+                <TextBlock x:Name="statusMessage" />
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="channel">
+                <StackPanel Hold="stackPanel_Hold">
+                    <TextBlock Text="Enter the channel uri:" />
+                    <TextBox x:Name="channelUri"
+                             TextWrapping="Wrap" />
+                </StackPanel>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="toast">
+                <StackPanel>
+                    <TextBlock Text="Title:"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox x:Name="toastTitle"
+                             Text="enter title" />
+                    <TextBlock Text="Content:"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox x:Name="toastContent"
+                             Text="enter content" />
+                    <TextBlock Text="First query string value:"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox x:Name="toastValue1"
+                             Text="enter value1" />
+                    <TextBlock Text="Second query string value:"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox x:Name="toastvalue2"
+                             Text="enter value2" />
+                    <Button Content="Send toast"
+                            Click="sendToast_Click" />
+                </StackPanel>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="tile">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="Title:"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <TextBox x:Name="tileTitle"
+                                 Text="enter title" />
+                        <TextBlock Text="Badge Count:"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <TextBox x:Name="tileBadgeCount"
+                                 Text="1"
+                                 InputScope="Number" />
+                        <TextBlock Text="Image:"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton x:Name="tileDefaultImage"
+                                         GroupName="tile"
+                                         Content="default" />
+                            <RadioButton x:Name="tileBlueImage"
+                                         GroupName="tile"
+                                         IsChecked="True"
+                                         Content="Blue.jpg" />
+                            <RadioButton x:Name="tileGreenImage"
+                                         GroupName="tile"
+                                         Content="Green.jpg" />
+                        </StackPanel>
+
+                        <TextBlock Text="Back Title:"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <TextBox x:Name="tileBackTitle"
+                                 Text="enter back title" />
+                        <TextBlock Text="Back Content:"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <TextBox x:Name="tileBackContent"
+                                 Text="enter back content" />
+                        <TextBlock Text="Back Image:"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton x:Name="tileBackNoImage"
+                                         GroupName="backTile"
+                                         Content="None" />
+                            <RadioButton x:Name="tileBackBlueImage"
+                                         GroupName="backTile"
+                                         Content="Blue.jpg" />
+                            <RadioButton x:Name="tileBackGreenImage"
+                                         IsChecked="True"
+                                         GroupName="backTile"
+                                         Content="Green.jpg" />
+                        </StackPanel>
+
+                        <Button Content="Send tile"
+                                Click="sendTile_Click" />
+                    </StackPanel>
+                </ScrollViewer>
+            </phone:PivotItem>
+        </phone:Pivot>
+    </Grid>
+
+</phone:PhoneApplicationPage>

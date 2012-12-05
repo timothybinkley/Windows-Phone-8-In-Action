@@ -1,0 +1,18 @@
+# Hidden subersion folders
+.svn
+
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+bin
+obj
+SubmissionInfo
+packages
+
+# Build Folders  (The build folder on my machine is started with capital letter and I'm not sure how to tell git not to be case-sensitive )
+Bin
+
+# Other misc files
+*.suo
+*.user
+*.db
+*.pdn
+*.cachefile

@@ -1,0 +1,76 @@
+﻿<phone:PhoneApplicationPage x:Class="Pivot.MainPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            mc:Ignorable="d"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="dataTemplate">
+            <Grid Width="432">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding Name}"
+                           Style="{StaticResource PhoneTextLargeStyle}" />
+                <TextBlock Grid.Row="1"
+                           Text="{Binding Category}"
+                           Style="{StaticResource PhoneTextSubtleStyle}" />
+                <TextBlock Grid.RowSpan="2"
+                           Grid.Column="1"
+                           Text="{Binding Value}"
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource PhoneTextExtraLargeStyle}" />
+            </Grid>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+        <!--Pivot Control-->
+        <phone:Pivot x:Name="pivot"
+                        Title="WINDOWS PHONE 8 IN ACTION"
+                        Loaded="pivot_Loaded"
+                        LoadedPivotItem="pivot_LoadedPivotItem"
+                        UnloadedPivotItem="pivot_UnloadedPivotItem">
+            <!--Pivot item one-->
+            <phone:PivotItem x:Name="allDataItem"
+                                Header="all">
+                <ListBox x:Name="allDataList"
+                         ItemTemplate="{StaticResource dataTemplate}" />
+            </phone:PivotItem>
+
+            <!--Pivot item two-->
+            <phone:PivotItem x:Name="filteredDataItem"
+                                Header="filtered">
+                <ListBox x:Name="filteredDataList"
+                         ItemTemplate="{StaticResource dataTemplate}" />
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="settings">
+                <StackPanel>
+                    <RadioButton x:Name="allDataOption"
+                                 Content="Load all data at start up"
+                                 IsChecked="True" />
+                    <RadioButton x:Name="asNeededOption"
+                                 Content="Only load data when needed" />
+                </StackPanel>
+            </phone:PivotItem>
+        </phone:Pivot>
+    </Grid>
+
+</phone:PhoneApplicationPage>

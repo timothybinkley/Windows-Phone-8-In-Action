@@ -1,0 +1,80 @@
+﻿<phone:PhoneApplicationPage
+        x:Class="UserInterfaceControls.ReceivingInput.InputScopeSample"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            mc:Ignorable="d"
+                            shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0"
+                    Margin="12,17,0,28">
+            <TextBlock Text="WINDOWS PHONE 8 IN ACTION"
+                       Style="{StaticResource PhoneTextNormalStyle}" />
+            <TextBlock Text="input scopes"
+                       Margin="9,-7,0,0"
+                       Style="{StaticResource PhoneTextTitle1Style}" />
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel"
+              Grid.Row="1"
+              Margin="12,0,12,0">
+            <ScrollViewer>
+                <StackPanel>
+                    <TextBlock Text="Default"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox />
+                    <TextBlock Text="Chat"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox InputScope="Chat" />
+                    <TextBlock Text="EmailNameOrAddress"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox InputScope="EmailNameOrAddress" />
+                    <TextBlock Text="EmailSmtpAddress"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox InputScope="EmailSmtpAddress" />
+                    <TextBlock Text="Maps"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox InputScope="Maps" />
+                    <TextBlock Text="NameOrPhoneNumber"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox InputScope="NameOrPhoneNumber" />
+                    <TextBlock Text="Search"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox InputScope="Search" />
+                    <TextBlock Text="TelephoneNumber"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox x:Name="textBox1" />
+                    <!--
+                InputScope for textBox is set in code behind 
+                InputScope="TelephoneNumber" 
+                -->
+                    <TextBlock Text="Text"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox InputScope="Text" />
+                    <TextBlock Text="Url"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox InputScope="Url" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

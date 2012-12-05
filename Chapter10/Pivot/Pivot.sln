@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Phone
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pivot", "Pivot.csproj", "{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Debug|ARM.ActiveCfg = Debug|ARM
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Debug|ARM.Build.0 = Debug|ARM
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Debug|ARM.Deploy.0 = Debug|ARM
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Debug|x86.ActiveCfg = Debug|x86
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Debug|x86.Build.0 = Debug|x86
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Debug|x86.Deploy.0 = Debug|x86
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Release|ARM.ActiveCfg = Release|ARM
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Release|ARM.Build.0 = Release|ARM
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Release|ARM.Deploy.0 = Release|ARM
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Release|x86.ActiveCfg = Release|x86
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Release|x86.Build.0 = Release|x86
+		{1EEF255F-5381-43CC-8B40-7BBC0D87CEBE}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

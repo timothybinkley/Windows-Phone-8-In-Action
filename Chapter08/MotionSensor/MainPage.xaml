@@ -1,0 +1,197 @@
+﻿<phone:PhoneApplicationPage x:Class="MotionSensor.MainPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:l="clr-namespace:MotionSensor"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            mc:Ignorable="d"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            shell:SystemTray.IsVisible="True">
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/transport.play.png"
+                                            IsEnabled="True"
+                                            Text="start" 
+                                            Click="start_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/cancel.png"
+                                            IsEnabled="True"
+                                            Text="stop"
+                                            Click="stop_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- LOCALIZATION NOTE:
+            To localize the displayed strings copy their values to appropriately named
+            keys in the app's neutral language resource file (AppResources.resx) then
+            replace the hard-coded text value between the attributes' quotation marks
+            with the binding clause whose path points to that string name.
+
+            For example:
+
+                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+
+            This binding points to the template's string resource named "ApplicationTitle".
+
+            Adding supported languages in the Project Properties tab will create a
+            new resx file per language that can carry the translated values of your
+            UI strings. The binding in these examples will cause the value of the
+            attributes to be drawn from the .resx file that matches the
+            CurrentUICulture of the app at run time.
+         -->
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel"
+                    Grid.Row="0"
+                    Margin="12,17,0,28">
+            <TextBlock Text="WINDOWS PHONE 8 IN ACTION"
+                       Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12,0" />
+            <TextBlock Text="motion sensor"
+                       Margin="9,-7,0,0"
+                       Style="{StaticResource PhoneTextTitle1Style}" />
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel"
+              Grid.Row="1"
+              Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="400" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="48" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="48" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="X"
+                       Grid.Column="1" />
+            <TextBlock Text="Y"
+                       Grid.Column="6" />
+            <TextBlock Text="Z"
+                       Grid.Column="11" />
+
+            <!-- height of control = 400; height of postive bar = 200; max value = 3;  
+                 set scale at 200/3 = 67 -->
+            <l:Bar x:Name="accelX"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   BarFill="Red"
+                   Scale="67" />
+            <l:Bar x:Name="accelY"
+                   Grid.Row="1"
+                   Grid.Column="5"
+                   BarFill="Red"
+                   Scale="67" />
+            <l:Bar x:Name="accelZ"
+                   Grid.Row="1"
+                   Grid.Column="10"
+                   BarFill="Red"
+                   Scale="67" />
+
+            <!-- height of control = 400; height of postive bar = 200; max value = 1;  
+                 set scale at 200/1 = 200 -->
+            <l:Bar x:Name="gravityX"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   BarFill="Yellow"
+                   Scale="200" />
+            <l:Bar x:Name="gravityY"
+                   Grid.Row="1"
+                   Grid.Column="6"
+                   BarFill="Yellow"
+                   Scale="200" />
+            <l:Bar x:Name="gravityZ"
+                   Grid.Row="1"
+                   Grid.Column="11"
+                   BarFill="Yellow"
+                   Scale="200" />
+
+            <!--height of control = 400; height of postive bar = 200; reasonable max value = 2pi = 6.25 (1.5 rotation per second)
+                set scale at 200/6.25 = 32 -->
+            <l:Bar x:Name="gyroX"
+                   Grid.Row="1"
+                   Grid.Column="2"
+                   BarFill="Blue"
+                   Scale="32" />
+            <l:Bar x:Name="gyroY"
+                   Grid.Row="1"
+                   Grid.Column="7"
+                   BarFill="Blue"
+                   Scale="32" />
+            <l:Bar x:Name="gyroZ"
+                   Grid.Row="1"
+                   Grid.Column="12"
+                   BarFill="Blue"
+                   Scale="32" />
+
+            <!-- 0->pi 200/3.14 = 64 -->
+            <l:Bar x:Name="attitudeX"
+                   Grid.Row="1"
+                   Grid.Column="3"
+                   BarFill="Violet"
+                   Scale="64" />
+            <!-- 0->pi/2 200/1.57 = 128 -->
+            <l:Bar x:Name="attitudeY"
+                   Grid.Row="1"
+                   Grid.Column="8"
+                   BarFill="Violet"
+                   Scale="128" />
+            <!-- 0->2pi 200/6.28 = 32 -->
+            <l:Bar x:Name="attitudeZ"
+                   Grid.Row="1"
+                   Grid.Column="13"
+                   BarFill="Violet"
+                   Scale="32" />
+
+            <StackPanel Grid.Row="2"
+                        Grid.ColumnSpan="14">
+                <TextBlock Foreground="Red"
+                           Text="Acceleration (g)" />
+                <TextBlock Foreground="Yellow"
+                           Text="Gravity (g)" />
+                <TextBlock Foreground="Blue"
+                           Text="Rotation (rad/sec)" />
+                <TextBlock x:Name="point"
+                           Foreground="Violet"
+                           Text="Attitude" />
+            </StackPanel >
+
+        </Grid>
+
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+    </Grid>
+
+</phone:PhoneApplicationPage>
