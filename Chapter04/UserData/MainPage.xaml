@@ -16,13 +16,13 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <phone:Pivot Title="WINDOWS PHONE 7 IN ACTION">
+        <phone:Pivot Title="WINDOWS PHONE 8 IN ACTION">
             <!--Pivot item one-->
             <phone:PivotItem Header="contacts">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBox x:Name="filterBox"
-                                 Width="350" />
+                                 Width="340" />
                         <Button Click="searchContacts_Click">
                             <Image Source="/Assets/feature.search.png" />
                         </Button>
@@ -80,7 +80,7 @@
             <phone:PivotItem Header="appointments">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <StackPanel  Width="350">
+                        <StackPanel  Width="340">
 
                             <RadioButton x:Name="todaySearch"
                                          Content="Today"

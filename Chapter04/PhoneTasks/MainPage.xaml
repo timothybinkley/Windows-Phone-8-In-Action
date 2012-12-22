@@ -84,36 +84,38 @@
                                  Margin="{StaticResource PhoneTouchTargetOverhang}" />
                 <Button x:Name="SavePhoneButton"
                         Content="Save"
-                        Click="SavePhone_Click" />
+                        Click="SavePhone_Click"
+                        Width="107" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <HyperlinkButton x:Name="supportEmailLink"
                                  Width="325"
-                                 Content="support@wp7inaction.com"
+                                 Content="support@wp8inaction.com"
                                  Click="SupportEmailLink_Click"
                                  Margin="{StaticResource PhoneTouchTargetOverhang}" />
                 <Button x:Name="saveEmailButton"
                         Content="Save"
-                        Click="SaveEmail_Click" />
+                        Click="SaveEmail_Click"
+                        Width="107" />
             </StackPanel>
 
             <TextBlock Text="Share:"
                        Style="{StaticResource PhoneTextGroupHeaderStyle}" />
             <!--<Button Content="Share via Text Message"
-                        Click="ShareSms_Click" /> -->
+                        Click="ShareSms_Click" />--> 
             <StackPanel Orientation="Horizontal">
-                <Button Content="SMS"
-                        Width="150"
+              <Button Content="SMS"
+                        Width="152"
                         Click="ShareSms_Click" />
                 <Button Content="Link"
-                        Width="150"
+                        Width="152"
                         Click="ShareLink_Click" />
                 <Button Content="Status"
-                        Width="150"
+                        Width="152"
                         Click="ShareStatus_Click" />
             </StackPanel>
 
-            <TextBlock Text="Windows Phone Marketplace:"
+            <TextBlock Text="Windows Phone Store:"
                        Style="{StaticResource PhoneTextGroupHeaderStyle}" />
             <Button Content="Write a Review"
                     Click="Review_Click" />
@@ -121,10 +123,13 @@
                     Content="Buy this application"
                     Click="HomePage_Click" />
             <StackPanel Orientation="Horizontal">
-                <Button Content="Search Marketplace"
-                        Click="Search_Click" />
-                <Button Content="Search Bing"
-                        Click="BingSearch_Click" />
+                <Button Content="Search the Store"
+                        Click="Search_Click"
+                        Width="230" />
+                <Button Content="Search with Bing"
+                        HorizontalAlignment="Right"
+                        Click="BingSearch_Click"
+                        Width="226" />
             </StackPanel>
         </StackPanel>
 
