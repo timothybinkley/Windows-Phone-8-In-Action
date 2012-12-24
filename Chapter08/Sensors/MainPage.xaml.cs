@@ -137,13 +137,14 @@ namespace Sensors
             {
                 CompassReading reading = compassSensor.CurrentValue;
                 Vector3 magnetic = reading.MagnetometerReading;
-                // height of control = 400; height of postive bar = 200; approximate max value = 50;
-                // set scale at 200/50 = 4
+                magnetic.Normalize();
+                // height of control = 400; height of postive bar = 200; vector is normalized with max value = 1;
+                // set scale at 200/1 = 200
                 compassX.Value = magnetic.X;
                 compassY.Value = magnetic.Y;
                 compassZ.Value = magnetic.Z;
 
-                heading.Text = string.Format("Compass (µT)        Heading {0} +/- {1} degrees", reading.TrueHeading, reading.HeadingAccuracy);
+                heading.Text = string.Format("Compass (µT)        Heading {0:F} +/- {1:F} degrees", reading.TrueHeading, reading.HeadingAccuracy);
             }
         }
 

@@ -113,23 +113,23 @@
                    BarFill="Red"
                    Scale="100" />
 
-            <!-- height of control = 400; height of postive bar = 200; approximate max value = 50;
-                 set scale at 200/50 = 4-->
+            <!-- height of control = 400; height of postive bar = 200; vector is normalized with max value = 1;
+                 set scale at 200/1 = 200-->
             <l:Bar x:Name="compassX"
                    Grid.Row="1"
                    Grid.Column="1"
-                   BarFill="Yellow"
-                   Scale="4" />
+                   BarFill="DarkGreen"
+                   Scale="200" />
             <l:Bar x:Name="compassY"
                    Grid.Row="1"
                    Grid.Column="5"
-                   BarFill="Yellow"
-                   Scale="4" />
+                   BarFill="DarkGreen"
+                   Scale="200" />
             <l:Bar x:Name="compassZ"
                    Grid.Row="1"
                    Grid.Column="9"
-                   BarFill="Yellow"
-                   Scale="4" />
+                   BarFill="DarkGreen"
+                   Scale="200" />
 
             <!-- height of control = 400; height of postive bar = 200; reasonable max value = 2pi = 6.25 (1.5 rotation per second)
                  set scale at 200/6.25 = 32 -->
@@ -154,7 +154,7 @@
                 <TextBlock Foreground="Red"
                            Text="Accelerometer (g)" />
                 <TextBlock x:Name="heading"
-                           Foreground="Yellow"
+                           Foreground="DarkGreen"
                            Text="Compass (µT)" />
                 <TextBlock Foreground="Blue"
                            Text="Gyroscope (rad/sec)" />
