@@ -120,17 +120,17 @@
             <l:Bar x:Name="gravityX"
                    Grid.Row="1"
                    Grid.Column="1"
-                   BarFill="Yellow"
+                   BarFill="DarkGreen"
                    Scale="200" />
             <l:Bar x:Name="gravityY"
                    Grid.Row="1"
                    Grid.Column="6"
-                   BarFill="Yellow"
+                   BarFill="DarkGreen"
                    Scale="200" />
             <l:Bar x:Name="gravityZ"
                    Grid.Row="1"
                    Grid.Column="11"
-                   BarFill="Yellow"
+                   BarFill="DarkGreen"
                    Scale="200" />
 
             <!--height of control = 400; height of postive bar = 200; reasonable max value = 2pi = 6.25 (1.5 rotation per second)
@@ -174,7 +174,7 @@
                         Grid.ColumnSpan="14">
                 <TextBlock Foreground="Red"
                            Text="Acceleration (g)" />
-                <TextBlock Foreground="Yellow"
+                <TextBlock Foreground="DarkGreen"
                            Text="Gravity (g)" />
                 <TextBlock Foreground="Blue"
                            Text="Rotation (rad/sec)" />
