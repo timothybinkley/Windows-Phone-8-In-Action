@@ -27,9 +27,9 @@ namespace NotificationClient
             notificationMessage.Text = string.Format("Launched with Uri:\n{0}", e.Uri);
         }
 
-        private void copy_Click(object sender, EventArgs e)
+        private void share_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(channelUri.Text);
+            Windows.System.Launcher.LaunchUriAsync(new System.Uri("wp8inaction:Launch?ClientChannelUri=" + channelUri.Text));
         }
 
         void SetupChannel()

@@ -29,6 +29,9 @@
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
+    <Extensions>
+      <Protocol Name="wp8inaction" NavUriFragment="encodedLaunchUri=%s" TaskID="_default"/>
+    </Extensions>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA"/>
       <ScreenResolution Name="ID_RESOLUTION_WXGA"/>

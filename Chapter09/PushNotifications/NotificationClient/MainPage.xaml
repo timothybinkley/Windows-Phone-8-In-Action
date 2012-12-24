@@ -14,10 +14,10 @@
                             shell:SystemTray.IsVisible="True">
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/save.png"
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/share.png"
                                             IsEnabled="True"
-                                            Text="copy" 
-                                            Click="copy_Click"/>
+                                            Text="share" 
+                                            Click="share_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

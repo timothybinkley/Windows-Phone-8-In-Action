@@ -34,6 +34,10 @@ namespace NotificationSimulator
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (NavigationContext.QueryString.ContainsKey("ClientChannelUri"))
+            {
+                channelUri.Text = NavigationContext.QueryString["ClientChannelUri"];
+            }
             LoadInformation("OnNagivatedTo");
         }
 
