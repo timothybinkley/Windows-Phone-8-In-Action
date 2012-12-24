@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{90146a3f-e20f-4970-a370-6e24d67d8b75}" Title="PhotoHubExtensions" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="PhotoHubExtensions author" Description="Sample description" Publisher="PhotoHubExtensions" PublisherID="{9c83a8dd-f397-47f5-a33a-d033d4678cce}">
+  <App xmlns="" ProductID="{90146a3f-e20f-4970-a370-6e24d67d8b75}" Title="Photo Editor" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="PhotoHubExtensions author" Description="Sample description" Publisher="PhotoHubExtensions" PublisherID="{9c83a8dd-f397-47f5-a33a-d033d4678cce}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />

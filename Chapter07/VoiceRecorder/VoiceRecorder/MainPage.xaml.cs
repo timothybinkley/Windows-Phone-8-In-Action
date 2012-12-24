@@ -199,7 +199,7 @@ namespace VoiceRecorder
                     BackgroundAudioPlayer.Instance.Track = new AudioTrack(
                         fileUri,
                         filename,
-                        "Windows Phone 7 in Action",
+                        "Windows Phone 8 in Action",
                         null, null, null, EnabledPlayerControls.Pause);
 
                     BackgroundAudioPlayer.Instance.Play();
