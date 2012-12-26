@@ -9,11 +9,13 @@
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
-                            SupportedOrientations="Portrait"
+                            SupportedOrientations="PortraitOrLandscape"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True">
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar StateChanged="ApplicationBar_StateChanged">
+        <shell:ApplicationBar StateChanged="ApplicationBar_StateChanged"
+                              Opacity="1"
+                              Mode="Minimized">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem x:Name="menuItem1"
                                               Text="epsilon"
@@ -83,7 +85,7 @@
               Margin="12,0,12,0">
 
             <ScrollViewer>
-                <StackPanel>
+                <StackPanel Visibility="Collapsed">
                     <CheckBox Content="ApplicationBar.IsVisible"
                               IsChecked="True"
                               Click="appBarVisible_Clicked" />
