@@ -3,6 +3,7 @@
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             mc:Ignorable="d"
@@ -13,9 +14,7 @@
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True">
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar StateChanged="ApplicationBar_StateChanged"
-                              Opacity="1"
-                              Mode="Minimized">
+        <shell:ApplicationBar StateChanged="ApplicationBar_StateChanged">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem x:Name="menuItem1"
                                               Text="epsilon"
@@ -83,13 +82,43 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <ScrollViewer>
-                <StackPanel Visibility="Collapsed">
+            <TextBlock Margin="{StaticResource PhoneTouchTargetLargeOverhang}"
+                       Text="tap and hold here to invoke a context menu">
+                <toolkit:ContextMenuService.ContextMenu>                     
+                    <toolkit:ContextMenu>
+                        <toolkit:MenuItem x:Name="contextMenuItem1"
+                                          Header="menu item 1"
+                                          Click="contextMenuItem_Click" />                               
+                        <toolkit:MenuItem x:Name="contextMenuItem2"
+                                          Header="menu item 2"
+                                          Click="contextMenuItem_Click" /> 
+                        <toolkit:MenuItem x:Name="contextMenuItem3"
+                                          Click="contextMenuItem_Click">
+                            <toolkit:MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Margin="0,0,6,0"
+                                          Data="M 3 23 L 12 33 L 24 17"
+                                          Stroke="{StaticResource PhoneChromeBrush}"
+                                          StrokeThickness="{StaticResource PhoneStrokeThickness}" />
+                                    <TextBlock Text="menu item 3" />
+                                </StackPanel>
+                            </toolkit:MenuItem.Header>
+                        </toolkit:MenuItem>
+                    </toolkit:ContextMenu>
+               </toolkit:ContextMenuService.ContextMenu>
+            </TextBlock>
+
+            <ScrollViewer Grid.Row="1">
+                <StackPanel>
                     <CheckBox Content="ApplicationBar.IsVisible"
                               IsChecked="True"
                               Click="appBarVisible_Clicked" />
-                    <CheckBox Content="ApplicationBar.Mode = Minimized"
+                    <!--<CheckBox Content="ApplicationBar.Mode = Minimized"
                               IsChecked="False"
                               Click="appBarMode_Clicked" />
                     <CheckBox Content="ApplicationBar.Opacity = 50%"
@@ -97,19 +126,19 @@
                               Click="appBarOpacity_Clicked" />
                     <CheckBox Content="ApplicationBar.IsMenuEnabled"
                               IsChecked="True"
-                              Click="appBarEnabled_Clicked" />
+                              Click="appBarEnabled_Clicked" />-->
                     <CheckBox Content="button1.IsEnabled"
                               IsChecked="True"
                               Click="button1Enabled_Clicked" />
-                    <CheckBox Content="menuItem1.IsEnabled"
+                    <!--<CheckBox Content="menuItem1.IsEnabled"
                               IsChecked="True"
-                              Click="menuItem1Enabled_Clicked" />
+                              Click="menuItem1Enabled_Clicked" />-->
                     <CheckBox IsChecked="True"
                               Content="Show button1"
                               Click="button1Show_Checked" />
-                    <CheckBox Content="Show menuItem1"
+                    <!--<CheckBox Content="Show menuItem1"
                               IsChecked="True"
-                              Click="menuItem1Show_Clicked" />
+                              Click="menuItem1Show_Clicked" />-->
                 </StackPanel>
             </ScrollViewer>
         </Grid>

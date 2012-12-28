@@ -139,5 +139,13 @@ namespace ApplicationBar
             System.Diagnostics.Debug.WriteLine("IsMenuVisible: " + e.IsMenuVisible);
         }
 
+        private void contextMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = (MenuItem)sender;
+            MessageBox.Show(menuItem.Name, "Context Menu Item Clicked",
+                MessageBoxButton.OK);
+
+        }
+
     }
 }
