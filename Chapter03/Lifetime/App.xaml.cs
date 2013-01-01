@@ -18,6 +18,8 @@ namespace Lifetime
         public DateTime ActivatedTime { get; private set; }
 
         public bool? IsApplicationInstancePreserved { get; private set; }
+        public bool? BackStackCleared { get; private set; }
+        public bool? NavigationCanceled { get; private set; }
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
@@ -48,7 +50,7 @@ namespace Lifetime
             if (Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                //Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -70,6 +72,7 @@ namespace Lifetime
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("Application_Launching");
             LaunchedTime = DateTime.Now;
         }
 
@@ -77,6 +80,8 @@ namespace Lifetime
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("Application_Activated");
+
             ActivatedTime = DateTime.Now;
             IsApplicationInstancePreserved = e.IsApplicationInstancePreserved;
             if (!e.IsApplicationInstancePreserved)
@@ -94,6 +99,8 @@ namespace Lifetime
                         State["LaunchingTime"];
                 }
             }
+            BackStackCleared = false;
+            NavigationCanceled = false;
         }
 
         // Code to execute when the application is deactivated (sent to background)
@@ -170,14 +177,23 @@ namespace Lifetime
 
         private void CheckForResetNavigation(object sender, NavigationEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("CheckForResetNavigation (" + e.NavigationMode + "): " + e.Uri);
+
             // If the app has received a 'reset' navigation, then we need to check
             // on the next navigation to see if the page stack should be reset
             if (e.NavigationMode == NavigationMode.Reset)
+            {
                 RootFrame.Navigated += ClearBackStackAfterReset;
+                if (e.Uri.ToString() != "/MainPage.xaml")
+                    RootFrame.Navigating += CancelNavigationAfterReset;
+            }
+
         }
 
         private void ClearBackStackAfterReset(object sender, NavigationEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("ClearBackStackAfterReset (" + e.NavigationMode + "): " + e.Uri);
+
             // Unregister the event so it doesn't get called again
             RootFrame.Navigated -= ClearBackStackAfterReset;
 
@@ -186,9 +202,27 @@ namespace Lifetime
                 return;
 
             // For UI consistency, clear the entire page stack
+            System.Diagnostics.Debug.WriteLine("...clearing the backstack");
+
             while (RootFrame.RemoveBackEntry() != null)
             {
                 ; // do nothing
+            }
+            BackStackCleared = true;
+        }
+
+        private void CancelNavigationAfterReset(object sender, NavigatingCancelEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("CancelNavigationAfterReset (" + e.NavigationMode + "): " + e.Uri);
+            // Unregister the event so it doesn't get called again
+            RootFrame.Navigating -= CancelNavigationAfterReset;
+
+            // Only cancel 'new' navigations when the target page is the primary url
+            if (e.NavigationMode == NavigationMode.New && e.Uri.ToString() == "/MainPage.xaml")
+            {
+                System.Diagnostics.Debug.WriteLine("...canceling navigation");
+                e.Cancel = true;
+                NavigationCanceled = true;
             }
         }
 
@@ -249,5 +283,7 @@ namespace Lifetime
                 throw;
             }
         }
+
+
     }
 }

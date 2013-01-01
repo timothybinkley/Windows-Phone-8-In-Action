@@ -9,30 +9,41 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Lifetime.Resources;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Lifetime
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        DispatcherTimer timer;
+
         DateTime pageConstructedTime;
         DateTime navigatedToTime;
         DateTime navigatedFromTime;
         DateTime obscuredTime;
         DateTime unobscuredTime;
-
+        
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+            timer = new DispatcherTimer();
+            timer.Tick += timer_Tick;
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            timer.Start();
+
             pageConstructedTime = DateTime.Now;
 
             App.RootFrame.Obscured += RootFrame_Obscured;
             App.RootFrame.Unobscured += RootFrame_Unobscured;
 
-            this.Tap += MainPage_Tap;
-
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            UpdateUserInterface();
         }
 
         // Sample code for building a localized ApplicationBar
@@ -51,7 +62,7 @@ namespace Lifetime
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
 
-        public void UpdateUserInterface()
+        private void UpdateUserInterface()
         {
             DateTime now = DateTime.Now;
 
@@ -81,10 +92,16 @@ namespace Lifetime
                 activated.DataContext = (now - app.ActivatedTime).TotalSeconds;
 
             instancePreserved.Text = app.IsApplicationInstancePreserved.ToString();
+
+            lockscreen.IsEnabled = PhoneApplicationService.Current.ApplicationIdleDetectionMode == IdleDetectionMode.Enabled;
+            //navCanceled.Text = app.NavigationCanceled.ToString();
+            //stackCleared.Text = app.BackStackCleared.ToString();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("MainPage.OnNavigatedTo (" + e.NavigationMode + "): " + e.Uri);
+
             navigatedToTime = DateTime.Now;
 
             var app = (App)Application.Current;
@@ -95,7 +112,7 @@ namespace Lifetime
                 navigatedFromTime = (DateTime)State["NavigatedFromTime"];
             }
 
-            UpdateUserInterface();
+            //UpdateUserInterface();
             base.OnNavigatedTo(e);
         }
 
@@ -109,31 +126,36 @@ namespace Lifetime
             base.OnNavigatedFrom(e);
         }
 
-        private void runOption_Checked(object sender, RoutedEventArgs e)
+        private void lockscreen_Checked(object sender, RoutedEventArgs e)
         {
             PhoneApplicationService.Current.ApplicationIdleDetectionMode = IdleDetectionMode.Disabled;
-            runOption.IsEnabled = false;
-        }
-
-        void RootFrame_Unobscured(object sender, EventArgs e)
-        {
-            unobscuredTime = DateTime.Now;
-            UpdateUserInterface();
+            //lockscreen.IsEnabled = false;
         }
 
         void RootFrame_Obscured(object sender, ObscuredEventArgs e)
         {
             obscuredTime = DateTime.Now;
-            UpdateUserInterface();
+            if (e.IsLocked)
+                timer.Stop();
+            //UpdateUserInterface();
+        }
+        void RootFrame_Unobscured(object sender, EventArgs e)
+        {
+            unobscuredTime = DateTime.Now;
+            timer.Start();
+            //UpdateUserInterface();
         }
 
-        private void MainPage_Tap(object sender, GestureEventArgs e)
+        private void pin_Click(object sender, EventArgs e)
         {
-            // perform an action to generate an obscured event.
-            var task = new Microsoft.Phone.Tasks.PhoneCallTask();
-            task.DisplayName = "Manning Publications Co.";
-            task.PhoneNumber = "888 555 1212";
-            task.Show();
+            int count = ShellTile.ActiveTiles.Count();
+            var tileData = new FlipTileData
+             {
+                 Title = "Lifetime",
+                 Count = count,
+             };
+            Uri launchUrl = new Uri(String.Format("/MainPage.xaml?context={0}", count), UriKind.Relative);
+            ShellTile.Create(launchUrl, tileData, false);
         }
 
     }
