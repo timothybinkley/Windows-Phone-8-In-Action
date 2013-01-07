@@ -19,13 +19,12 @@
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\IconicTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <IconImageURI IsRelative="true" IsResource="false">Assets\Tiles\IconicTileMediumLarge.png</IconImageURI>
-          <Title>
-          </Title>
+          <Title>Hello World</Title>
           <Message>
           </Message>
           <BackgroundColor>
           </BackgroundColor>
-          <HasLarge>false</HasLarge>
+          <HasLarge>False</HasLarge>
           <LargeContent1>
           </LargeContent1>
           <LargeContent2>

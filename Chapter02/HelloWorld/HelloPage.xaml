@@ -3,6 +3,7 @@
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             mc:Ignorable="d"
@@ -12,15 +13,7 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True">
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/next.png"
-                                            IsEnabled="True"
-                                            Text="say hello"
-                                            Click="ApplicationBarIconButton_Click_1" />
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
-
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
@@ -103,12 +96,12 @@
                       StrokeThickness="5" />
             </Canvas>
 
-            <StackPanel Grid.Row="1"
-                        Margin="{StaticResource PhoneMargin}">
-                <TextBlock>Enter your name:</TextBlock>
-                <TextBox x:Name="nameInput"
-                         InputScope="Text" />
-            </StackPanel>
+            <toolkit:PhoneTextBox Grid.Row="1" x:Name="nameInput" 
+                                  VerticalAlignment="Top"
+                                  InputScope="Text"
+                                  Hint="Enter your first name"
+                                  ActionIcon="/Assets/next.png"
+                                  ActionIconTapped="nameInput_ActionIconTapped" />
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

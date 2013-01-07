@@ -45,12 +45,16 @@ namespace HelloWorld
 
         private void pinButton_Click(object sender, EventArgs e)
         {
-            StandardTileData tileData = new StandardTileData
+            var tileData = new FlipTileData
             {
-                BackgroundImage = new Uri("Background.png", UriKind.Relative),
-                Title = string.Format("Hello {0}!", helloMessage.Text),
+                SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative),
+                BackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative),
+                WideBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative),
+                BackTitle = string.Format("Hello {0}!", helloMessage.Text),
+                BackContent = "Windows Phone 8 in Action",
+                WideBackContent = "Windows Phone 8 in Action. Written by Timothy Binkley-Jones, Massimo Perga and Micheal Sync",
             };
-            ShellTile.Create(BuildNavigationUri(helloMessage.Text), tileData);
+            ShellTile.Create(BuildNavigationUri(helloMessage.Text), tileData, true);
         }
 
         public static Uri BuildNavigationUri(string name)

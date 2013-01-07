@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using HelloWorld.Resources;
-using System.Windows.Media;
+﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Marketplace;
-using System.Windows.Input;
+using System;
+using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace HelloWorld
 {
@@ -25,20 +17,7 @@ namespace HelloWorld
             //BuildLocalizedApplicationBar();
 
             globeBrush = (SolidColorBrush)ContentPanel.Resources["GlobeBrush"];
-
-            LicenseInformation licenseInfo = new LicenseInformation();
-#if TRIAL_LICENSE
-            bool isInTrialMode = true;
-#else
-            bool isInTrialMode = licenseInfo.IsTrial();
-#endif
-            if (isInTrialMode)
-            {
-                ApplicationTitle.Text += " (TRIAL)";
-            }
-        }
-
-        
+         }
 
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
@@ -60,7 +39,7 @@ namespace HelloWorld
         int colorIndex = 0;
         SolidColorBrush globeBrush;
 
-        private void Canvas_Tap(object sender, GestureEventArgs e)
+        private void Canvas_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             colorIndex++;
             if (colorIndex >= colors.Length)
@@ -68,14 +47,14 @@ namespace HelloWorld
             globeBrush.Color = colors[colorIndex];
         }
 
-        private void Canvas_DoubleTap(object sender, GestureEventArgs e)
+        private void Canvas_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             globeBrush.Color = (Color)App.Current.Resources["PhoneAccentColor"];
         }
 
-        private void ApplicationBarIconButton_Click_1(object sender, System.EventArgs e)
+        private void nameInput_ActionIconTapped(object sender, EventArgs e)
         {
-        	NavigationService.Navigate(GreetingPage.BuildNavigationUri(nameInput.Text));
+            NavigationService.Navigate(GreetingPage.BuildNavigationUri(nameInput.Text));
         }
 
     }

@@ -23,7 +23,7 @@
                                             IsEnabled="True"
                                             Text="copy"
                                             Click="copyButton_Click" />
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/next.png"
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/share.png"
                                             IsEnabled="True"
                                             Text="pin"
                                             Click="pinButton_Click" />
