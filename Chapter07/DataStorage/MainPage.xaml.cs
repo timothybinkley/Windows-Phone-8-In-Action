@@ -15,7 +15,9 @@ namespace DataStorage
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        IHighScoreRepository repository;
+        //HighScoreSettingsRepository repository;
+        HighScoreFileRepository repository;
+        //HighScoreDatabaseRepository repository;
         ObservableCollection<HighScore> highscores;
         Random random = new Random();
 
@@ -23,11 +25,18 @@ namespace DataStorage
         public MainPage()
         {
             InitializeComponent();
-            repository = new HighScoreSettingsRepository();
-            //repository = new HighScoreFileRepository();
+            
+            //repository = new HighScoreSettingsRepository();
             //repository = new HighScoreDatabaseRepository();
-            highscores = new ObservableCollection<HighScore>(repository.Load());
-            HighScoresList.ItemsSource = highscores;
+            //highscores = new ObservableCollection<HighScore>(repository.Load());
+            //HighScoresList.ItemsSource = highscores;
+
+            repository = new HighScoreFileRepository();
+            repository.LoadAsync().ContinueWith((t) =>
+            {
+                highscores = new ObservableCollection<HighScore>(t.Result);
+                Dispatcher.BeginInvoke(() => HighScoresList.ItemsSource = highscores);
+            });
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
@@ -84,7 +93,7 @@ namespace DataStorage
             var nameInput = FocusManager.GetFocusedElement() as TextBox;
             if (nameInput != null)
                 nameInput.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            
+
             repository.Save(highscores.ToList());
         }
 

@@ -7,7 +7,7 @@ using System.Data.Linq;
 
 namespace DataStorage
 {
-    public class HighScoreDatabaseRepository : IHighScoreRepository
+    public class HighScoreDatabaseRepository
     {
         HighScoresDataContext db;
 

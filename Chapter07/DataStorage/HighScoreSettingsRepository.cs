@@ -3,9 +3,9 @@ using System.IO.IsolatedStorage;
 
 namespace DataStorage
 {
-    public class HighScoreSettingsRepository : IHighScoreRepository
+    public class HighScoreSettingsRepository 
     {
-        public List<HighScore> Load(int level = 0)
+        public List<HighScore> Load()
         {
             List<HighScore> storedData;
             if (!IsolatedStorageSettings.ApplicationSettings.TryGetValue("HighScores", out storedData))

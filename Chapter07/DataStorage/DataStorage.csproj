@@ -98,7 +98,6 @@
     <Compile Include="HighScoreFileRepository.cs" />
     <Compile Include="HighScoresDataContext.cs" />
     <Compile Include="HighScoreSettingsRepository.cs" />
-    <Compile Include="IHighScoreRepository.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

@@ -1,64 +1,64 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.IO;
 using System.Xml.Serialization;
+using Windows.Storage;
+using Windows.Storage.Streams;
+using Windows.Foundation;
+using System.Threading.Tasks;
 
 namespace DataStorage
 {
-    public class HighScoreFileRepository : IHighScoreRepository
+    public class HighScoreFileRepository
     {
-        public List<HighScore> Load(int level = 0)
+        public async Task<List<HighScore>> LoadAsync()
         {
             List<HighScore> storedData;
-            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            try
             {
-                if (storage.DirectoryExists("HighScores") &&
-                    storage.FileExists(@"HighScores\highscores.xml"))
+
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder scoresFolder = await localFolder.GetFolderAsync("HighScores");
+                StorageFile scoresFile = await scoresFolder.GetFileAsync("highscores.xml");
+                using (var randomAccess = await scoresFile.OpenReadAsync())
                 {
-                    // load the data file into the contacts list.
-                    using (IsolatedStorageFileStream stream =
-                        storage.OpenFile(@"HighScores\highscores.xml", FileMode.Open))
-                    {
-                        XmlSerializer serializer =
-                            new XmlSerializer(typeof(List<HighScore>));
-                        storedData = (List<HighScore>)serializer.Deserialize(stream);
-                    }
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<HighScore>));
+                    storedData = (List<HighScore>)serializer.Deserialize(randomAccess.AsStreamForRead());
                 }
-                else
-                {
-                    storedData = new List<HighScore>();
-                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                storedData = new List<HighScore>();
             }
             return storedData;
         }
 
-        public void Save(List<HighScore> highscores)
+        public async void Save(List<HighScore> highscores)
         {
-            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            StorageFolder scoresFolder = await localFolder.CreateFolderAsync("HighScores", CreationCollisionOption.OpenIfExists);
+            StorageFile scoresFile = await scoresFolder.CreateFileAsync("highscores.xml", CreationCollisionOption.ReplaceExisting);
+            using (IRandomAccessStream randomAccess = await scoresFile.OpenAsync(FileAccessMode.ReadWrite))
             {
-                if (!storage.DirectoryExists("HighScores"))
+                using (IOutputStream output = randomAccess.GetOutputStreamAt(0))
                 {
-                    storage.CreateDirectory("HighScores");
-                }
-                using (IsolatedStorageFileStream stream =
-                    storage.CreateFile(@"HighScores\highscores.xml"))
-                {
-                    XmlSerializer serializer =
-                        new XmlSerializer(typeof(List<HighScore>));
-                    serializer.Serialize(stream, highscores);
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<HighScore>));
+                    serializer.Serialize(output.AsStreamForWrite(), highscores);
                 }
             }
         }
 
-        public void Clear()
+        public async void Clear()
         {
-            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            try
             {
-                if (storage.FileExists(@"HighScores\highscores.xml"))
-                    storage.DeleteFile(@"HighScores\highscores.xml");
-            
-                if (storage.DirectoryExists("HighScores"))
-                    storage.DeleteDirectory("HighScores");
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder scoresFolder = await localFolder.GetFolderAsync("HighScores");
+                await scoresFolder.DeleteAsync();
+            }
+            catch (FileNotFoundException)
+            {
             }
         }
     }
