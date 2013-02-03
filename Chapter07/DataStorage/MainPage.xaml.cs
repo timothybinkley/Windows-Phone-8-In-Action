@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Phone.Controls;
+using System;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using DataStorage.Resources;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace DataStorage
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        //HighScoreSettingsRepository repository;
-        HighScoreFileRepository repository;
-        //HighScoreDatabaseRepository repository;
+        //HighScoreSettingsRepository repository = new HighScoreSettingsRepository();
+        //HighScoreFileRepository repository = new HighScoreFileRepository();
+        HighScoreDatabaseRepository repository = new HighScoreDatabaseRepository();
+
         ObservableCollection<HighScore> highscores;
         Random random = new Random();
 
@@ -25,21 +21,20 @@ namespace DataStorage
         public MainPage()
         {
             InitializeComponent();
-            
-            //repository = new HighScoreSettingsRepository();
-            //repository = new HighScoreDatabaseRepository();
-            //highscores = new ObservableCollection<HighScore>(repository.Load());
-            //HighScoresList.ItemsSource = highscores;
-
-            repository = new HighScoreFileRepository();
-            repository.LoadAsync().ContinueWith((t) =>
-            {
-                highscores = new ObservableCollection<HighScore>(t.Result);
-                Dispatcher.BeginInvoke(() => HighScoresList.ItemsSource = highscores);
-            });
+            this.Loaded += MainPage_Loaded;
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+
+        async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            await repository.Initialize();
+            var results = repository.Load();
+            //var results = await repository.LoadAsync();
+            
+            highscores = new ObservableCollection<HighScore>(results);
+            HighScoresList.ItemsSource = highscores;
         }
 
         // Sample code for building a localized ApplicationBar

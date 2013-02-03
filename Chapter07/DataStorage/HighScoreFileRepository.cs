@@ -1,27 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO.IsolatedStorage;
 using System.IO;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Windows.Foundation;
-using System.Threading.Tasks;
 
 namespace DataStorage
 {
-    public class HighScoreFileRepository
+    public class HighScoreFileRepository 
     {
         public async Task<List<HighScore>> LoadAsync()
         {
             List<HighScore> storedData;
             try
             {
-
                 StorageFolder localFolder = ApplicationData.Current.LocalFolder;
                 StorageFolder scoresFolder = await localFolder.GetFolderAsync("HighScores");
                 StorageFile scoresFile = await scoresFolder.GetFileAsync("highscores.xml");
-                using (var randomAccess = await scoresFile.OpenReadAsync())
+                using (IRandomAccessStreamWithContentType randomAccess = await scoresFile.OpenReadAsync())
                 {
                     XmlSerializer serializer = new XmlSerializer(typeof(List<HighScore>));
                     storedData = (List<HighScore>)serializer.Deserialize(randomAccess.AsStreamForRead());
@@ -51,15 +48,9 @@ namespace DataStorage
 
         public async void Clear()
         {
-            try
-            {
-                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-                StorageFolder scoresFolder = await localFolder.GetFolderAsync("HighScores");
-                await scoresFolder.DeleteAsync();
-            }
-            catch (FileNotFoundException)
-            {
-            }
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            StorageFolder scoresFolder = await localFolder.GetFolderAsync("HighScores");
+            await scoresFolder.DeleteAsync();
         }
     }
 }

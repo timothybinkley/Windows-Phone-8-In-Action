@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO.IsolatedStorage;
 using System.Linq;
 using Microsoft.Phone.Data.Linq;
 using System.Data.Linq;
+using Windows.Storage;
+using System.Threading.Tasks;
 
 namespace DataStorage
 {
@@ -16,13 +17,21 @@ namespace DataStorage
 
         public HighScoreDatabaseRepository()
         {
-            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                if (!storage.DirectoryExists("HighScoreDatabase"))
-                {
-                    storage.CreateDirectory("HighScoreDatabase");
-                }
-            }
+            allQuery = CompiledQuery.Compile((HighScoresDataContext context) => from score in db.HighScores
+                                                                                orderby score.Score descending
+                                                                                select score);
+
+            levelQuery = CompiledQuery.Compile((HighScoresDataContext context, int level) => from score in db.HighScores
+                                                                                             orderby score.Score descending
+                                                                                             where score.LevelsCompleted == level
+                                                                                             select score);
+        }
+
+        public async Task Initialize()
+        {
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            StorageFolder scoresFolder = await localFolder.CreateFolderAsync("HighScoreDatabase", CreationCollisionOption.OpenIfExists);
+
             db = new HighScoresDataContext(@"isostore:/HighScoreDatabase/highscores.sdf");
             if (!db.DatabaseExists())
             {
@@ -43,15 +52,6 @@ namespace DataStorage
                     updater.Execute();
                 }
             }
-
-            allQuery = CompiledQuery.Compile((HighScoresDataContext context) => from score in db.HighScores
-                                                                                orderby score.Score descending
-                                                                                select score);
-
-            levelQuery = CompiledQuery.Compile((HighScoresDataContext context, int level) => from score in db.HighScores
-                                                                                             orderby score.Score descending
-                                                                                             where score.LevelsCompleted == level
-                                                                                             select score);
         }
 
         public List<HighScore> Load(int level = 0)
