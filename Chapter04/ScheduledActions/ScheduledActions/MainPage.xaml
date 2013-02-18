@@ -16,16 +16,13 @@
         <shell:ApplicationBar>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/add.png"
                                             IsEnabled="True"
-                                            Text="reminder"
+                                            Text="add"
                                             Click="AddReminder_Click" />
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/edit.png"
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.settings.png"
                                             IsEnabled="True"
-                                            Text="reschedule"
-                                            Click="RescheduleNotification_Click" />
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/delete.png"
-                                            IsEnabled="True"
-                                            Text="remove"
-                                            Click="RemoveNotification_Click" />
+                                            Text="lock screen"
+                                            Click="Settings_Click" />
+
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
@@ -85,24 +82,25 @@
             </Border>
 
             <phone:LongListSelector x:Name="notificationList"
-                                    Grid.Row="1">
+                                    Grid.Row="1"
+                                    SelectionChanged="NotificationList_SelectionChanged">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="12">
-                            <TextBlock Text="{Binding Name}"
-                                       FontSize="{StaticResource PhoneFontSizeLarge}" />
                             <TextBlock Text="{Binding Title}"
-                                       Style="{StaticResource PhoneTextNormalStyle}" />
-                            <TextBlock Text="{Binding Content}"
+                                       Style="{StaticResource PhoneTextLargeStyle}" />
+                            <TextBlock Text="{Binding Content}" 
                                        Style="{StaticResource PhoneTextNormalStyle}" />
                             <TextBlock Text="{Binding BeginTime, StringFormat='\{0:f\}'}"
+                                       Style="{StaticResource PhoneTextNormalStyle}" />
+                            <TextBlock Text="{Binding ExpirationTime, StringFormat='Expires \{0\:f}'}"
                                        Style="{StaticResource PhoneTextSmallStyle}" />
-                            <TextBlock Text="{Binding ExpirationTime, StringFormat='expires at \{0\:g}'}"
-                                       Style="{StaticResource PhoneTextSmallStyle}" />
-                            <TextBlock Text="{Binding RecurrenceType, StringFormat='Recurs: \{0\}'}"
-                                       Style="{StaticResource PhoneTextSmallStyle}" />
-                            <TextBlock Text="{Binding IsScheduled, StringFormat='Is Scheduled: \{0\}'}"
-                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding RecurrenceType, StringFormat='Recurs: \{0\}'}"
+                                           Style="{StaticResource PhoneTextSmallStyle}" />
+                                <TextBlock Text="{Binding IsScheduled, StringFormat='Is Scheduled: \{0\}'}"
+                                           Style="{StaticResource PhoneTextSmallStyle}" />
+                            </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>

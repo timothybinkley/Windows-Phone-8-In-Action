@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using ScheduledActions.Resources;
 using Microsoft.Phone.Scheduler;
+using NotificationsUpdateAgent;
+using Windows.System;
 
 namespace ScheduledActions
 {
@@ -18,7 +17,6 @@ namespace ScheduledActions
         public MainPage()
         {
             InitializeComponent();
-
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
@@ -38,67 +36,52 @@ namespace ScheduledActions
         //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
-
-        private void AddReminder_Click(object sender, EventArgs e)
+        
+        private void DisplayScheduledNotifications()
         {
-            string reminderName = string.Format("Reminder {0}", Guid.NewGuid());
-
-            Reminder reminder = new Reminder(reminderName);
-            reminder.BeginTime = DateTime.Now.AddMinutes(1);
-            reminder.RecurrenceType = RecurrenceInterval.Daily;
-            reminder.Content = "This is a WP8 in Action Reminder";
-            reminder.Title = "Reminders in action";
-            reminder.NavigationUri = new Uri(
-                "/MainPage.xaml?reminder=" + reminderName, UriKind.Relative);
-
-            ScheduledActionService.Add(reminder);
-            DisplayScheduledNotifications();
-        }
-
-        private void RescheduleNotification_Click(object sender, EventArgs e)
-        {
-            var notification =
-                notificationList.SelectedItem as ScheduledNotification;
-            if (notification != null)
-            {
-                notification.BeginTime = DateTime.Now.AddMinutes(1);
-                notification.Content = "*" + notification.Content;
-
-                ScheduledActionService.Replace(notification);
-                DisplayScheduledNotifications();
-            }
-        }
-
-
-        private void RemoveNotification_Click(object sender, EventArgs e)
-        {
-            var notification = notificationList.SelectedItem
-                as ScheduledNotification;
-            if (notification != null)
-            {
-                ScheduledActionService.Remove(notification.Name);
-                DisplayScheduledNotifications();
-            }
-        }
-
-        protected void DisplayScheduledNotifications()
-        {
-            var items = new List<ScheduledAction>();
-            var notifications = ScheduledActionService.
-                GetActions<ScheduledNotification>();
-            foreach (var notification in notifications)
-            {
-                var item = ScheduledActionService.Find(notification.Name);
-                items.Add(item);
-            }
-            notificationList.ItemsSource = items;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             agentMessage.Text = ((App)Application.Current).AgentStatus;
-            DisplayScheduledNotifications();
-            base.OnNavigatedTo(e);
+
+            ScheduledAgent.UpdateDefaultTile();
+
+            List<ScheduledAction> items = new List<ScheduledAction>();
+
+            var notifications = ScheduledActionService
+                .GetActions<ScheduledNotification>()
+                .OrderBy((item) => item.BeginTime);
+
+            foreach (ScheduledNotification notification in notifications)
+            {
+                ScheduledAction item = ScheduledActionService.Find(notification.Name);
+                items.Add(item);
+            }
+            notificationList.ItemsSource = items;
         }
+
+        private void AddReminder_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/ReminderPage.xaml", UriKind.Relative));
+        }
+
+        private void Settings_Click(object sender, EventArgs e)
+        {
+            Launcher.LaunchUriAsync(new Uri("ms-settings-lock:"));
+        }
+
+        private void NotificationList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("selection changed");
+            ScheduledNotification notification =
+                notificationList.SelectedItem as ScheduledNotification;
+            if (notification != null)
+            {
+                NavigationService.Navigate(new Uri("/ReminderPage.xaml?name=" + notification.Name, UriKind.Relative));
+            }
+        }
+
+        
     }
 }

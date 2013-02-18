@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Phone
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduledActions", "ScheduledActions\ScheduledActions.csproj", "{B2F78EFF-E790-4357-8103-FABE3BA3C077}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationsCleanupAgent", "NotificationsCleanupAgent\NotificationsCleanupAgent.csproj", "{0D40B9C1-9D77-4BA9-8749-900F63403ACE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationsUpdateAgent", "NotificationsUpdateAgent\NotificationsUpdateAgent.csproj", "{0D40B9C1-9D77-4BA9-8749-900F63403ACE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

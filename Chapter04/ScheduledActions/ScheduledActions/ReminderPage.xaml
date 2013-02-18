@@ -1,0 +1,90 @@
+﻿<phone:PhoneApplicationPage x:Class="ScheduledActions.ReminderPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            mc:Ignorable="d"
+                            shell:SystemTray.IsVisible="True">
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsMenuEnabled="False">
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/save.png"
+                                            IsEnabled="True"
+                                            Text="save"
+                                            Click="Save_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/delete.png"
+                                            IsEnabled="True"
+                                            Text="delete"
+                                            Click="Delete_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0"
+                    Margin="12,17,0,28">
+            <TextBlock Text="WINDOWS PHONE 8 IN ACTION"
+                       Style="{StaticResource PhoneTextNormalStyle}" />
+            <TextBlock x:Name="pageTitle"
+                       Text="reminder"
+                       Margin="9,-7,0,0"
+                       Style="{StaticResource PhoneTextTitle1Style}" />
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <StackPanel x:Name="ContentPanel"
+                    Grid.Row="1"
+                    Margin="12,0,12,0">
+            <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">Title</TextBlock>
+            <TextBox x:Name="titleBox"
+                     InputScope="Text"
+                     MaxLength="63"
+                     Text="{Binding Title, Mode=TwoWay}" />
+            
+            <toolkit:TimePicker x:Name="timePicker"
+                                Header="Time"
+                                Value="{Binding BeginTime, Mode=OneTime}" />
+            <toolkit:DatePicker x:Name="datePicker"
+                                Header="Date"
+                                Value="{Binding BeginTime, Mode=OneTime}" />
+            <toolkit:ListPicker x:Name="listPicker"
+                                Header="Occurs"
+                                SelectedItem="{Binding RecurrenceType, Mode=TwoWay}">
+                <toolkit:ListPicker.FullModeItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding}"
+                                       Margin="{StaticResource PhoneTouchTargetOverhang}"
+                                       Style="{StaticResource PhoneTextLargeStyle}" />
+                        </Grid>
+                    </DataTemplate>
+                </toolkit:ListPicker.FullModeItemTemplate>
+            </toolkit:ListPicker>
+
+            <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">Content</TextBlock>
+            <toolkit:PhoneTextBox x:Name="contentBox"
+                                  MaxLength="256"
+                                  InputScope="Text"
+                                  AcceptsReturn="False"
+                                  TextWrapping="Wrap"
+                                  Hint="Enter your notes or description"
+                                  Text="{Binding Content, Mode=TwoWay}" />
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>

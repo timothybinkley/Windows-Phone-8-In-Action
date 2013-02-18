@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Scheduler;
 using Microsoft.Phone.Shell;
 using ScheduledActions.Resources;
-using Microsoft.Phone.Scheduler;
 
 namespace ScheduledActions
 {
@@ -64,43 +63,43 @@ namespace ScheduledActions
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            PeriodicTask cleanupTask;
+            PeriodicTask updateTask;
 
-            cleanupTask = ScheduledActionService.
-            Find("NotificationCleanupTask") as PeriodicTask;
-            if (cleanupTask != null)
+            updateTask = ScheduledActionService.
+            Find("NotificationUpdateTask") as PeriodicTask;
+            if (updateTask != null)
             {
-                if (cleanupTask.LastExitReason != AgentExitReason.Completed
-                    && cleanupTask.LastExitReason != AgentExitReason.None)
+                if (updateTask.LastExitReason != AgentExitReason.Completed
+                    && updateTask.LastExitReason != AgentExitReason.None)
                 {
                     AgentStatus += string.Format("The background task failed to complete its last execution at {0:g} with an exit reason of {1}. ",
-                        cleanupTask.LastScheduledTime, cleanupTask.LastExitReason);
+                        updateTask.LastScheduledTime, updateTask.LastExitReason);
                 }
 
-                if (!cleanupTask.IsEnabled)
+                if (!updateTask.IsEnabled)
                     AgentStatus += "The background task was blocked by the user. ";
 
-                if (cleanupTask.ExpirationTime < DateTime.Now)
+                if (updateTask.ExpirationTime < DateTime.Now)
                     AgentStatus = "The background task was expired. ";
 
-                ScheduledActionService.Remove(cleanupTask.Name);
+                ScheduledActionService.Remove(updateTask.Name);
             }
 
             try
             {
-                cleanupTask = new PeriodicTask("NotificationCleanupTask");
-                cleanupTask.Description = "A background agent responsible for removing expired Windows Phone 8 in Action notifications";
-                ScheduledActionService.Add(cleanupTask);
+                updateTask = new PeriodicTask("NotificationUpdateTask");
+                updateTask.Description = "A background agent responsible for updating the ScheduledActions' Live Tile and the lock screen.";
+                ScheduledActionService.Add(updateTask);
             }
             catch (InvalidOperationException ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 AgentStatus += "Unable to create the background task.";
-                cleanupTask = null;
+                updateTask = null;
             }
 
-            if (cleanupTask != null)
-                ScheduledActionService.LaunchForTest(cleanupTask.Name,
+            if (updateTask != null)
+                ScheduledActionService.LaunchForTest(updateTask.Name,
                    TimeSpan.FromSeconds(3));
         }
 
