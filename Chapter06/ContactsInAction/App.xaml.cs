@@ -6,9 +6,9 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using UserData.Resources;
+using ContactsInAction.Resources;
 
-namespace UserData
+namespace ContactsInAction
 {
     public partial class App : Application
     {

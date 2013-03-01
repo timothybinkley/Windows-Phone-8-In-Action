@@ -1,6 +1,6 @@
-﻿using UserData.Resources;
+﻿using ContactsInAction.Resources;
 
-namespace UserData
+namespace ContactsInAction
 {
     /// <summary>
     /// Provides access to string resources.
