@@ -5,13 +5,11 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using System;
 using System.IO;
-using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using Windows.Storage;
-using Windows.Storage.Streams;
 
 namespace PhotoEditor
 {
@@ -124,8 +122,6 @@ namespace PhotoEditor
          camera.CaptureCompleted += camera_CaptureCompleted;
 
          CameraButtons.ShutterKeyPressed += cameraButtons_ShutterKeyPressed;
-
-         System.Diagnostics.Debug.WriteLine(camera.Orientation);
 
          // create and rotate the brush since our orientation does not match the cameras default orientation.
          var brush = new VideoBrush();
@@ -268,13 +264,10 @@ namespace PhotoEditor
          }
       }
 
-
-
       private async void Save_Click(object sender, EventArgs e)
       {
          if (currentImage != null)
          {
-
             StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             using (Stream imageStream = await localFolder.OpenStreamForWriteAsync("custom-photo.jpg", CreationCollisionOption.ReplaceExisting))
             {
@@ -303,7 +296,5 @@ namespace PhotoEditor
          }
       }
       #endregion
-
-
    }
 }

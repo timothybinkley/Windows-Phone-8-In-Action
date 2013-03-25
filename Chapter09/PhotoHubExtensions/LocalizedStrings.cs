@@ -1,6 +1,6 @@
-﻿using PhotoHubExtensions.Resources;
+﻿using PhotoEditor.Resources;
 
-namespace PhotoHubExtensions
+namespace PhotoEditor
 {
     /// <summary>
     /// Provides access to string resources.

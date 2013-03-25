@@ -6,9 +6,9 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using PhotoHubExtensions.Resources;
+using PhotoEditor.Resources;
 
-namespace PhotoHubExtensions
+namespace PhotoEditor
 {
     public partial class App : Application
     {

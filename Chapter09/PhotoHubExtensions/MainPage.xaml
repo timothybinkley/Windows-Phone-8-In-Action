@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage x:Class="PhotoHubExtensions.MainPage"
+﻿<phone:PhoneApplicationPage x:Class="PhotoEditor.MainPage"
                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -16,31 +16,31 @@
         <shell:ApplicationBar>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem IsEnabled="True"
-                                              Text="choose photo"
-                                              Click="Choose_Click" />
+                                              Text="choose photo" 
+                                              Click="Choose_Click"/>
                 <shell:ApplicationBarMenuItem IsEnabled="True"
-                                              Text="capture photo"
-                                              Click="Capture_Click" />
+                                              Text="capture photo" 
+                                              Click="Capture_Click"/>
                 <shell:ApplicationBarMenuItem IsEnabled="True"
-                                              Text="custom camera"
-                                              Click="Camera_Click" />
+                                              Text="custom camera" 
+                                              Click="Camera_Click"/>
                 <shell:ApplicationBarMenuItem IsEnabled="True"
-                                              Text="open custom photo"
-                                              Click="Open_Click" />
-                <shell:ApplicationBarMenuItem IsEnabled="True"
-                                              Text="open from library"
+                                              Text="open custom photo" 
+                                              Click="Open_Click"/>
+                <shell:ApplicationBarMenuItem Text="open from library" 
                                               Click="OpenFromLibrary_Click" />
             </shell:ApplicationBar.MenuItems>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/edit.png"
                                             IsEnabled="True"
                                             Text="edit"
-                                            Click="Edit_Click" />
+                                            Click="Edit_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/save.png"
                                             IsEnabled="True"
-                                            Text="save"
-                                            Click="Save_Click" />
+                                            Text="save" 
+                                            Click="Save_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
@@ -107,10 +107,12 @@
 
             <Rectangle x:Name="photoContainer"
                        Fill="Gray" />
+
             <TextBlock x:Name="imageDetails"
                        Grid.Row="1"
                        TextWrapping="Wrap"
                        Text="Choose an image source from the menu." />
+
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

@@ -1,27 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{90146a3f-e20f-4970-a370-6e24d67d8b75}" Title="Photo Editor" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="PhotoHubExtensions author" Description="Sample description" Publisher="PhotoHubExtensions" PublisherID="{9c83a8dd-f397-47f5-a33a-d033d4678cce}">
+  <App xmlns="" ProductID="{90146a3f-e20f-4970-a370-6e24d67d8b75}" Title="PhotoEditor" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="PhotoEditor author" Description="Sample description" Publisher="PhotoEditor" PublisherID="{8194a83a-9a78-4b99-83a6-50dab163a071}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
-      <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
-      <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
-      <Capability Name="ID_CAP_SENSORS" />
-      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
-      <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
       <Capability Name="ID_CAP_ISV_CAMERA" />
+      <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
     </Tasks>
     <Tokens>
-      <PrimaryToken TokenID="PhotoHubExtensionsToken" TaskName="_default">
+      <PrimaryToken TokenID="PhotoEditorToken" TaskName="_default">
         <TemplateFlip>
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>PhotoHubExtensions</Title>
+          <Title>PhotoEditor</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI>
@@ -36,17 +31,24 @@
       </PrimaryToken>
     </Tokens>
     <Extensions>
-      <Extension ExtensionName="Photos_Extra_Image_Editor" ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}" TaskID="_default" />
-      <Extension ExtensionName="Photos_Extra_Hub" ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}" TaskID="_default" />
-      <!-- Photos_Extra_Viewer is deprecated
-      <Extension ExtensionName="Photos_Extra_Viewer" ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}" TaskID="_default" />
-      -->
-      <Extension ExtensionName="Photos_Extra_Share" ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}" TaskID="_default" />
+      <Extension ExtensionName="Photos_Extra_Hub"
+        ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}"
+        TaskID="_default" />
+      <Extension ExtensionName="Photos_Extra_Image_Editor"
+        ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}"
+        TaskID="_default" />
+      <Extension ExtensionName="Photos_Extra_Share"
+        ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}"
+        TaskID="_default" />
     </Extensions>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA" />
       <ScreenResolution Name="ID_RESOLUTION_WXGA" />
       <ScreenResolution Name="ID_RESOLUTION_HD720P" />
     </ScreenResolutions>
+    <Requirements>
+      <Requirement Name="ID_REQ_FRONTCAMERA" />
+      <Requirement Name="ID_REQ_REARCAMERA" />
+    </Requirements>
   </App>
 </Deployment>

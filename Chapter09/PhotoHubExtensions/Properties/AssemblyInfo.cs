@@ -6,11 +6,11 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PhotoHubExtensions")]
+[assembly: AssemblyTitle("PhotoEditor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PhotoHubExtensions")]
+[assembly: AssemblyProduct("PhotoEditor")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("16e77540-356f-4ea4-ab35-a4feb244f0b7")]
+[assembly: Guid("e087a562-f4dd-47eb-a715-c78cda3d11b3")]
 
 // Version information for an assembly consists of the following four values:
 //

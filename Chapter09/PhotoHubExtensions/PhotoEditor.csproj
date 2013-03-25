@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{90146A3F-E20F-4970-A370-6E24D67D8B75}</ProjectGuid>
+    <ProjectGuid>{A364D934-873D-40A6-B6F2-BD34FB8FE78D}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PhotoHubExtensions</RootNamespace>
-    <AssemblyName>PhotoHubExtensions</AssemblyName>
+    <RootNamespace>PhotoEditor</RootNamespace>
+    <AssemblyName>PhotoEditor</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -19,9 +19,9 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>PhotoHubExtensions_$(Configuration)_$(Platform).xap</XapFilename>
+    <XapFilename>PhotoEditor_$(Configuration)_$(Platform).xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>PhotoHubExtensions.App</SilverlightAppEntry>
+    <SilverlightAppEntry>PhotoEditor.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
@@ -115,6 +115,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
@@ -151,7 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ExifLib">
-      <HintPath>..\..\..\Windows-Phone-7-In-Action\Chapter06\PhotoEditor\Libs\ExifLib.dll</HintPath>
+      <HintPath>packages\ExifLib.1.4.3.0\lib\sl3-wp\ExifLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
