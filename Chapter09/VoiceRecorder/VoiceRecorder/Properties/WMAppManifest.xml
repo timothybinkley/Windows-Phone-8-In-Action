@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{990c6a84-9c4d-4e4a-ab1d-a17aa1fd1349}" Title="VoiceRecorder" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="VoiceRecorder author" Description="Sample description" Publisher="VoiceRecorder" PublisherID="{8ff41791-6c68-4370-a64d-c6dad1b4f1dc}">
+  <App xmlns="" ProductID="{990c6a84-9c4d-4e4a-ab1d-a17aa1fd1349}" Title="VoiceRecorder" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="VoiceRecorder author" Description="Sample description" Publisher="VoiceRecorder" PublisherID="{8ff41791-6c68-4370-a64d-c6dad1b4f1dc}" HubType="1">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
