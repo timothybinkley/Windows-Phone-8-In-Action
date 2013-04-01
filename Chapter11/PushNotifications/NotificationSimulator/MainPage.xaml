@@ -3,6 +3,7 @@
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             mc:Ignorable="d"
@@ -17,10 +18,13 @@
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
         <!--Pivot Control-->
-        <phone:Pivot Title="WINDOWS PHONE 8 IN ACTION - SIMULATOR">
+        <phone:Pivot x:Name="pivot" Title="WINDOWS PHONE 8 IN ACTION - SIMULATOR">
 
             <phone:PivotItem Header="status">
-                <TextBlock x:Name="statusMessage" />
+                <StackPanel>
+                    <Button Click="Button_Click">Update status</Button>
+                    <TextBlock x:Name="statusMessage" Margin="12,12" />
+                </StackPanel>
             </phone:PivotItem>
 
             <phone:PivotItem Header="channel">
@@ -35,20 +39,20 @@
                 <StackPanel>
                     <TextBlock Text="Title:"
                                Style="{StaticResource PhoneTextNormalStyle}" />
-                    <TextBox x:Name="toastTitle"
-                             Text="enter title" />
+                    <toolkit:PhoneTextBox x:Name="toastTitle"
+                             Hint="enter title" />
                     <TextBlock Text="Content:"
                                Style="{StaticResource PhoneTextNormalStyle}" />
-                    <TextBox x:Name="toastContent"
-                             Text="enter content" />
+                    <toolkit:PhoneTextBox x:Name="toastContent"
+                             Hint="enter content" />
                     <TextBlock Text="First query string value:"
                                Style="{StaticResource PhoneTextNormalStyle}" />
-                    <TextBox x:Name="toastValue1"
-                             Text="enter value1" />
+                    <toolkit:PhoneTextBox x:Name="toastValue1"
+                             Hint="enter value1" />
                     <TextBlock Text="Second query string value:"
                                Style="{StaticResource PhoneTextNormalStyle}" />
-                    <TextBox x:Name="toastvalue2"
-                             Text="enter value2" />
+                    <toolkit:PhoneTextBox x:Name="toastvalue2"
+                             Hint="enter value2" />
                     <Button Content="Send toast"
                             Click="sendToast_Click" />
                 </StackPanel>
@@ -59,12 +63,12 @@
                     <StackPanel>
                         <TextBlock Text="Title:"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
-                        <TextBox x:Name="tileTitle"
-                                 Text="enter title" />
+                        <toolkit:PhoneTextBox x:Name="tileTitle"
+                                 Hint="enter title" />
                         <TextBlock Text="Badge Count:"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
-                        <TextBox x:Name="tileBadgeCount"
-                                 Text="1"
+                        <toolkit:PhoneTextBox x:Name="tileBadgeCount"
+                                 Hint="enter a count"
                                  InputScope="Number" />
                         <TextBlock Text="Image:"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
@@ -75,20 +79,20 @@
                             <RadioButton x:Name="tileBlueImage"
                                          GroupName="tile"
                                          IsChecked="True"
-                                         Content="Blue.jpg" />
+                                         Content="Blue.png" />
                             <RadioButton x:Name="tileGreenImage"
                                          GroupName="tile"
-                                         Content="Green.jpg" />
+                                         Content="Green.png" />
                         </StackPanel>
 
                         <TextBlock Text="Back Title:"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
-                        <TextBox x:Name="tileBackTitle"
-                                 Text="enter back title" />
+                        <toolkit:PhoneTextBox x:Name="tileBackTitle"
+                                 Hint="enter back title" />
                         <TextBlock Text="Back Content:"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
-                        <TextBox x:Name="tileBackContent"
-                                 Text="enter back content" />
+                        <toolkit:PhoneTextBox x:Name="tileBackContent"
+                                 Hint="enter back content" />
                         <TextBlock Text="Back Image:"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
                         <StackPanel Orientation="Horizontal">
@@ -97,11 +101,11 @@
                                          Content="None" />
                             <RadioButton x:Name="tileBackBlueImage"
                                          GroupName="backTile"
-                                         Content="Blue.jpg" />
+                                         Content="Blue.png" />
                             <RadioButton x:Name="tileBackGreenImage"
                                          IsChecked="True"
                                          GroupName="backTile"
-                                         Content="Green.jpg" />
+                                         Content="Green.png" />
                         </StackPanel>
 
                         <Button Content="Send tile"

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{6038113f-a202-480f-8833-c5617813b8df}" Title="NotificationClient" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="NotificationClient author" Description="Sample description" Publisher="NotificationClient" PublisherID="{33801b91-06cf-4af6-a694-0a25b9e9423e}">
+  <App xmlns="" ProductID="{6038113f-a202-480f-8833-c5617813b8df}" Title="NotificationClient" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="NotificationClient author" Description="Sample description" Publisher="NotificationClient" PublisherID="{3ca87244-7fa2-42ec-b25a-fad9a1c8bcb4}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />

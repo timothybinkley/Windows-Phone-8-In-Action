@@ -20,94 +20,43 @@
                                             Click="share_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
-
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot"
-          Background="Transparent">
-        <phone:Pivot Title="WINDOWS PHONE 8 IN ACTION - CLIENT">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <phone:PivotItem Header="notification">
-                <StackPanel>
-                    <TextBlock Text="Channel Connection Status:"
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="WINDOWS PHONE 8 IN ACTION" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="notification client" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+
+            <StackPanel>
+                <TextBlock Text="Channel Connection Status:"
                                Style="{StaticResource PhoneTextTitle2Style}" />
-                    <TextBlock x:Name="channelStatus"
+                <TextBlock x:Name="channelStatus"
                                Text="channel does not exist"
                                TextWrapping="Wrap"
                                Style="{StaticResource PhoneTextSmallStyle}" />
 
-                    <TextBlock Text="Channel URI:"
+                <TextBlock Text="Channel URI:"
                                Style="{StaticResource PhoneTextTitle2Style}" />
-                    <TextBlock x:Name="channelUri"
+                <TextBlock x:Name="channelUri"
                                TextWrapping="Wrap"
                                Style="{StaticResource PhoneTextSmallStyle}" />
 
-                    <TextBlock Text="Notification message:"
+                <TextBlock Text="Notification message:"
                                Style="{StaticResource PhoneTextTitle2Style}" />
-                    <TextBlock x:Name="notificationMessage"
+                <TextBlock x:Name="notificationMessage"
                                Style="{StaticResource PhoneTextSmallStyle}"
                                Text="(no message)"
                                TextWrapping="Wrap" />
-                </StackPanel>
-
-            </phone:PivotItem>
-
-            <phone:PivotItem Header="tile">
-                <ScrollViewer>
-                    <StackPanel>
-                        <TextBlock Text="Title:"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
-                        <TextBox x:Name="tileTitle"
-                                 Text="enter title" />
-                        <TextBlock Text="Badge Count:"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
-                        <TextBox x:Name="tileBadgeCount"
-                                 Text="1"
-                                 InputScope="Number" />
-                        <TextBlock Text="Image:"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
-                        <StackPanel Orientation="Horizontal">
-                            <RadioButton x:Name="tileDefaultImage"
-                                         GroupName="tile"
-                                         Content="default" />
-                            <RadioButton x:Name="tileBlueImage"
-                                         GroupName="tile"
-                                         IsChecked="True"
-                                         Content="Blue.jpg" />
-                            <RadioButton x:Name="tileGreenImage"
-                                         GroupName="tile"
-                                         Content="Green.jpg" />
-                        </StackPanel>
-
-                        <TextBlock Text="Back Title:"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
-                        <TextBox x:Name="tileBackTitle"
-                                 Text="enter back title" />
-                        <TextBlock Text="Back Content:"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
-                        <TextBox x:Name="tileBackContent"
-                                 Text="enter back content" />
-
-                        <TextBlock Text="Back Image:"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
-                        <StackPanel Orientation="Horizontal">
-                            <RadioButton x:Name="tileBackNoImage"
-                                         GroupName="backTile"
-                                         Content="None" />
-                            <RadioButton x:Name="tileBackBlueImage"
-                                         GroupName="backTile"
-                                         Content="Blue.jpg" />
-                            <RadioButton x:Name="tileBackGreenImage"
-                                         IsChecked="True"
-                                         GroupName="backTile"
-                                         Content="Green.jpg" />
-                        </StackPanel>
-
-                        <Button Content="Update tile"
-                                Click="updateTile_Click" />
-                    </StackPanel>
-                </ScrollViewer>
-            </phone:PivotItem>
-        </phone:Pivot>
+            </StackPanel>
+        </Grid>
     </Grid>
-
 </phone:PhoneApplicationPage>
