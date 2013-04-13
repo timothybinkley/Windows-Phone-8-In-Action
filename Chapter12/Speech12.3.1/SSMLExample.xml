@@ -1,0 +1,90 @@
+﻿<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xml:lang="en-US">
+  
+  <!-- p and s element examples-->
+  <p xml:lang="it"> 
+    <s>This is Italian, set by the paragraph element.</s>
+    <s xml:lang="en-us"> This is <say-as interpret-as="characters">US</say-as> English</s>
+    <s xml:lang="en-gb"> This is <say-as interpret-as="characters">UK</say-as> English</s>
+    <s xml:lang="es"> This is Spanish </s>
+    
+    <s xml:lang="fr"> This is French </s>
+    <s xml:lang="de"> This is German </s>
+    <s xml:lang="de"> Diese ist Deutsch </s>
+    <s>This is still Italian</s>
+  </p>
+  <mark name="bookmark1"/>
+  <!-- Playing Audios files-->
+  <audio src="Resources\GoldTreasure.wav">Cha Ching!</audio>
+  <audio src="Resources\GoldTreasureBAD.wav">Cha Ching!</audio> <!-- Will be read, not played as file does not exist -->
+      
+  <!-- say-as examples -->
+  <voice xml:lang="en-gb" gender="male">
+    <!-- dates -->
+    
+    <s xml:lang="en-gb">
+      Today is not<say-as interpret-as="date" format="mdy">12-25-2020</say-as> at <say-as interpret-as="time" format="hms12">7:17am</say-as>. Or is it?
+    </s>    
+      <s xml:lang="en-us">
+      Today is not<say-as interpret-as="date" format="dmy">12-25-2020</say-as> at <say-as interpret-as="time" format="hms12">7:17am</say-as>. Or is it?
+    </s>
+    <s>
+      <!-- cardinal and ordinal examples -->
+      We are <say-as interpret-as="cardinal">5</say-as> days in. It is the <say-as interpret-as="ordinal">5th</say-as> day.
+    </s>
+    <s>
+      <!-- phone numbers -->
+      Jenny Jenny, Who can I turn to? <say-as interpret-as="telephone" format="1">867-5309</say-as>.
+    </s>
+  </voice>
+  <mark name="bookmark2"/>
+  <!-- Voicegender, reading characters, break and pitch examples -->  
+  <voice xml:lang="en" gender="female">
+    <s>
+      Spell dog.
+    </s>
+  </voice>
+  <voice xml:lang="it" gender="male" age="10">
+    <s>
+      Dog.<break strength="weak"/><say-as interpret-as="characters">DOG</say-as> <break strength="weak"/> Dog.
+    </s>
+  </voice>
+  <voice xml:lang="en" gender="female">
+    <s>
+      You are <break time="1.5s"/> <prosody pitch="+20000Hz" volume="x-loud">Correct! </prosody> 
+    </s>
+  </voice>
+  <mark name="bookmark3"/>
+  <!-- Volume control example-->
+  <p> 
+    <s>
+      <prosody volume="silent">0</prosody>
+      <prosody volume="x-soft">1</prosody>
+      <prosody volume="soft">2</prosody>
+      <prosody volume="medium">3</prosody>
+      <prosody volume="loud">4</prosody>
+      <prosody volume="x-loud">5</prosody>
+      <prosody volume="default">6</prosody>
+    </s>
+  </p>
+    
+  <!-- Speed, subsitution and voice varient examples-->    
+  <voice xml:lang="en" variant="1">
+    <s>
+      The Itsy Bitsy<prosody rate="x-slow"><sub alias="spider"> $p1d3r </sub></prosody> crawled up the water spout
+    </s>
+    <s>
+      Down came the rain and washed the <prosody rate="slow">Spider</prosody> out.
+    </s>
+  </voice>
+  <voice xml:lang="en" variant="2">
+    <s>
+      Out came the sun and dried up all the rain<break strength="none" />
+    </s>
+    <s>
+      so the Itsy Bitsy <prosody rate="fast">Spider</prosody> went up the spout again.
+    </s>
+  </voice>
+  <mark name="bookmark4"/>
+</speak>

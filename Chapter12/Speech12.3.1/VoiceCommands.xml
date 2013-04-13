@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.0">
+  <CommandSet xml:lang="en-US" Name="EnglishCommands">
+    <CommandPrefix>Speech Sample</CommandPrefix>
+    <Example>set voice to Adam</Example>
+
+    <Command Name="ListVoicesCommand">
+      <Example> list voices </Example>
+      <ListenFor> [and] list [all] [voices] </ListenFor>
+      <ListenFor> [and] list {gender} [voices] </ListenFor>
+      <ListenFor> [and] list [only] {gender} [voices] </ListenFor>
+      <ListenFor> [and] list [all] {gender} [voices] </ListenFor>
+      <Feedback> Listing Voices... </Feedback>
+      <Navigate Target="VoicesList.xaml" />
+    </Command>
+    
+    <Command Name="SetVoiceCommand">
+      <Example> set voice to Adam </Example>
+      <ListenFor> [and] set [voice] [to] {voice}</ListenFor>
+      <ListenFor> [and] set [voice] [to] {voice} [and] {action}</ListenFor>
+      <Feedback> Setting Voice to {voice}... </Feedback>
+      <Navigate Target="MainPage.xaml" />
+    </Command>
+    
+    <!--
+     Speech Sample set {voices}
+     Speech Sample set to {voices}
+     Speech Sample set voice {voices}
+     Speech Sample set voice to {voices}
+     
+     Speech Sample and set {voices}
+     Speech Sample and set to {voices}
+     Speech Sample and set voice {voices}
+     Speech Sample and set voice to {voices}
+     
+     open Speech Sample and set {voices}
+     open Speech Sample and set to {voices}
+     open Speech Sample and set voice {voices}
+     open Speech Sample and set voice to {voices}
+     
+     Speech Sample set {voices} read
+     Speech Sample set to {voices} read
+     Speech Sample set voice {voices} read
+     Speech Sample set voice to {voices} read
+     
+     open Speech Sample and set {voices} read
+     open Speech Sample and set to {voices} read
+     open Speech Sample and set voice {voices} read
+     open Speech Sample and set voice to {voices} read
+     
+     Speech Sample set {voices} and read
+     Speech Sample set to {voices} and read
+     Speech Sample set voice {voices} and read
+     Speech Sample set voice to {voices} and read
+     
+     open Speech Sample and set {voices} and read
+     open Speech Sample and set to {voices} and read
+     open Speech Sample and set voice {voices} and read
+     open Speech Sample and set voice to {voices} and read
+     
+     <Command Name="SayPhraseCommand">
+      <Example> say *phrase* </Example>
+      <ListenFor> [and] say [phrase] {*} </ListenFor>
+      <Feedback> Saying phrase </Feedback>
+      <Navigate Target="MainPage.xaml" />
+    </Command>-->
+
+    <PhraseList Label="voice">
+      <Item>Adam</Item>
+    </PhraseList> 
+     
+    <PhraseList Label="action">
+      <Item>read</Item>
+    </PhraseList> 
+      
+    <PhraseList Label="gender">
+      <Item>male</Item>
+      <Item>female</Item>
+    </PhraseList> 
+      
+  </CommandSet>
+</VoiceCommands>

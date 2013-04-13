@@ -1,0 +1,88 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Speech.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="WINDOWS PHONE 8 IN ACTION" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Text="speech" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <StackPanel>
+                <TextBlock Height="30" 
+                           Text="Language" 
+                           Foreground="{StaticResource PhoneAccentBrush}" />
+                <ListBox Name="LanguagesListBox" Height="182" ItemsSource="{Binding}" SelectionChanged="LanguagesListBox_OnSelectionChanged" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DisplayName}" 
+                                           Style="{StaticResource PhoneTextNormalStyle}" 
+                                           Grid.Column="0"
+                                           Grid.Row="0"
+                                           Grid.ColumnSpan="2" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBlock Height="30" 
+                           Text="Voice" 
+                           Foreground="{StaticResource PhoneAccentBrush}" />
+                <ListBox Name="VoicesListBox" Height="176" ItemsSource="{Binding}" SelectionChanged="VoicesListBox_OnSelectionChanged" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding DisplayName}" 
+                                           Style="{StaticResource PhoneTextNormalStyle}" 
+                                           Grid.Column="0"
+                                           Grid.Row="0"
+                                           Grid.ColumnSpan="2"/>
+                                <TextBlock Text="{Binding Language}" 
+                                           Style="{StaticResource PhoneTextNormalStyle}" 
+                                           Grid.Column="0"
+                                           Grid.Row="1"/>
+                                <TextBlock Text="{Binding Gender}" 
+                                           Style="{StaticResource PhoneTextNormalStyle}" 
+                                           Grid.Column="1"
+                                           Grid.Row="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBlock Height="30" 
+                           Text="Phrase" 
+                           Foreground="{StaticResource PhoneAccentBrush}" />
+                <TextBox Height="116" 
+                         Name="PhraseTextBox" 
+                         Text="Windows Phone is awesome!"/>
+                <Button Content="Say It" Click="SayItButtonClick" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</phone:PhoneApplicationPage>
