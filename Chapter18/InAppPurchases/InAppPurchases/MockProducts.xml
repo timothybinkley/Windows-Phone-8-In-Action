@@ -1,0 +1,53 @@
+﻿<?xml version="1.0"?>
+<ProductListings>
+  <ProductListing Key="GoldCoins100" Purchased="false" Fulfilled="false">
+    <Name>100 Gold</Name>
+    <Description>A sample product listing</Description>
+    <ProductId>GoldCoins100</ProductId>
+    <ProductType>Consumable</ProductType>
+    <FormattedPrice>$1.00</FormattedPrice>
+    <ImageUri></ImageUri>
+    <Keywords>test;product</Keywords>
+    <Tag>Additional text</Tag>
+  </ProductListing>
+  <ProductListing Key="MapUnlock1" Purchased="false" Fulfilled="false">
+    <Name>Map Unlock 1</Name>
+    <Description>A sample product listing</Description>
+    <ProductId>MapUnlock1</ProductId>
+    <ProductType>Durable</ProductType>
+    <FormattedPrice>$1.00</FormattedPrice>
+    <ImageUri></ImageUri>
+    <Keywords>test;product</Keywords>
+    <Tag>Additional text</Tag>
+  </ProductListing>
+  <ProductListing Key="MapUnlock2" Purchased="false" Fulfilled="false">
+    <Name>Map Unlock 2</Name>
+    <Description>A sample product listing</Description>
+    <ProductId>MapUnlock2</ProductId>
+    <ProductType>Durable</ProductType>
+    <FormattedPrice>$1.00</FormattedPrice>
+    <ImageUri></ImageUri>
+    <Keywords>test;product</Keywords>
+    <Tag>Additional text</Tag>
+  </ProductListing>
+  <ProductListing Key="SpecialItem1" Purchased="false" Fulfilled="false">
+    <Name>Special Item 1</Name>
+    <Description>A sample product listing</Description>
+    <ProductId>SpecialItem1</ProductId>
+    <ProductType>Durable</ProductType>
+    <FormattedPrice>$1.00</FormattedPrice>
+    <ImageUri></ImageUri>
+    <Keywords>test;product</Keywords>
+    <Tag>Additional text</Tag>
+  </ProductListing>
+  <ProductListing Key="SpecialItem2" Purchased="false" Fulfilled="false">
+    <Name>Special Item 2</Name>
+    <Description>A sample product listing</Description>
+    <ProductId>SpecialItem2</ProductId>
+    <ProductType>Durable</ProductType>
+    <FormattedPrice>$1.00</FormattedPrice>
+    <ImageUri></ImageUri>
+    <Keywords>test;product</Keywords>
+    <Tag>Additional text</Tag>
+  </ProductListing>
+</ProductListings>
