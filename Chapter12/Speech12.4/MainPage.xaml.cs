@@ -248,60 +248,60 @@ namespace Speech
         private static void HandleSpeechSynthesisError(Exception ex)
         {
             // convert the HResult code to an int for comparison to returned
-            const int AbortedCallHResult = unchecked((int)0x80045508); // SPERR_SYSTEM_CALL_INTERRUPTED
-            const int GenericInternalHResult = unchecked((int)0x800455A0); // SPERR_WINRT_INTERNAL_ERROR
-            const int AlreadyInLexiconHResult = unchecked((int)0x800455A1); // SPERR_WINRT_ALREADY_IN_LEX
-            const int NotInLexiconHResult = unchecked((int)0x800455A2); // SPERR_WINRT_NOT_IN_LEX
-            const int UnsupportedPhonemeHResult = unchecked((int)0x800455B5); // SPERR_WINRT_UNSUPPORTED_PHONEME
-            const int PhonemeConversionHResult = unchecked((int)0x800455B6); // SPERR_WINRT_PHONEME_CONVERSION
-            const int InvalidLexiconHResult = unchecked((int)0x800455B8); // SPERR_WINRT_LEX_INVALID_DATA
-            const int UnsupportedLanguageHResult = unchecked((int)0x800455BC); // SPERR_WINRT_UNSUPPORTED_LANG
-            const int StringTooLongHResult = unchecked((int)0x800455BD); // SPERR_WINRT_STRING_TOO_LONG
-            const int StringEmptyHResult = unchecked((int)0x800455BE); // SPERR_WINRT_STRING_EMPTY
-            const int NoMoreItemsHResult = unchecked((int)0x800455BF); // SPERR_WINRT_NO_MORE_ITEMS
+            const uint AbortedCallHResult = 0x80045508; // SPERR_SYSTEM_CALL_INTERRUPTED
+            const uint GenericInternalHResult = 0x800455A0; // SPERR_WINRT_INTERNAL_ERROR
+            const uint AlreadyInLexiconHResult = 0x800455A1; // SPERR_WINRT_ALREADY_IN_LEX
+            const uint NotInLexiconHResult = 0x800455A2; // SPERR_WINRT_NOT_IN_LEX
+            const uint UnsupportedPhonemeHResult = 0x800455B5; // SPERR_WINRT_UNSUPPORTED_PHONEME
+            const uint PhonemeConversionHResult = 0x800455B6; // SPERR_WINRT_PHONEME_CONVERSION
+            const uint InvalidLexiconHResult = 0x800455B8; // SPERR_WINRT_LEX_INVALID_DATA
+            const uint UnsupportedLanguageHResult = 0x800455BC; // SPERR_WINRT_UNSUPPORTED_LANG
+            const uint StringTooLongHResult = 0x800455BD; // SPERR_WINRT_STRING_TOO_LONG
+            const uint StringEmptyHResult = 0x800455BE; // SPERR_WINRT_STRING_EMPTY
+            const uint NoMoreItemsHResult = 0x800455BF; // SPERR_WINRT_NO_MORE_ITEMS
 
 
-            if (ex.HResult == AbortedCallHResult)
+            if ((uint) ex.HResult == AbortedCallHResult)
             {
                 MessageBox.Show(ex.Message, "SPERR_SYSTEM_CALL_INTERRUPTED", MessageBoxButton.OK);
             }
-            else if (ex.HResult == GenericInternalHResult)
+            else if ((uint) ex.HResult == GenericInternalHResult)
             {
                 MessageBox.Show(ex.Message, "SPERR_WINRT_INTERNAL_ERROR", MessageBoxButton.OK);
             }
-            else if (ex.HResult == AlreadyInLexiconHResult)
+            else if ((uint) ex.HResult == AlreadyInLexiconHResult)
             {
                 MessageBox.Show(ex.Message, "SPERR_WINRT_ALREADY_IN_LEX", MessageBoxButton.OK);
             }
-            else if (ex.HResult == NotInLexiconHResult)
+            else if ((uint) ex.HResult == NotInLexiconHResult)
             {
                 MessageBox.Show(ex.Message, "SPERR_WINRT_NOT_IN_LEX", MessageBoxButton.OK);
             }
-            else if (ex.HResult == UnsupportedPhonemeHResult)
+            else if ((uint) ex.HResult == UnsupportedPhonemeHResult)
             {
                 MessageBox.Show(ex.Message, "SPERR_WINRT_UNSUPPORTED_PHONEME", MessageBoxButton.OK);
             }
-            else if (ex.HResult == PhonemeConversionHResult)
+            else if ((uint) ex.HResult == PhonemeConversionHResult)
             {
                 MessageBox.Show(ex.Message, "SPERR_WINRT_PHONEME_CONVERSION", MessageBoxButton.OK);
             }
-            else if (ex.HResult == InvalidLexiconHResult)
+            else if ((uint) ex.HResult == InvalidLexiconHResult)
             {
                 MessageBox.Show(ex.Message, "SPERR_WINRT_LEX_INVALID_DATA", MessageBoxButton.OK);
             }
-            else if (ex.HResult == UnsupportedLanguageHResult)
+            else if ((uint) ex.HResult == UnsupportedLanguageHResult)
             {
                 MessageBox.Show(ex.Message, "SPERR_WINRT_UNSUPPORTED_LANG", MessageBoxButton.OK);
             }
-            else if (ex.HResult == StringTooLongHResult)
+            else if ((uint) ex.HResult == StringTooLongHResult)
             {
                 MessageBox.Show(ex.Message, "SPERR_WINRT_STRING_TOO_LONG", MessageBoxButton.OK);
             }
-            else if (ex.HResult == StringEmptyHResult)
+            else if ((uint) ex.HResult == StringEmptyHResult)
             {
                 MessageBox.Show(ex.Message, "SPERR_WINRT_STRING_EMPTY", MessageBoxButton.OK);
             }
-            else if (ex.HResult == NoMoreItemsHResult)
+            else if ((uint) ex.HResult == NoMoreItemsHResult)
             {
                 MessageBox.Show(ex.Message, "SPERR_WINRT_NO_MORE_ITEMS", MessageBoxButton.OK);
             }
@@ -310,7 +310,7 @@ namespace Speech
                 MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButton.OK);
             }
         }
-       
+
         #region Language and Voice 
 
         private void LanguagesListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
