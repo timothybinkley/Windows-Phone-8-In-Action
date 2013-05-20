@@ -28,9 +28,9 @@ namespace Sensors
             }
         }
 
-        private int scale;
+        private double scale;
 
-        public int Scale
+        public double Scale
         {
             get { return scale; }
             set
@@ -40,9 +40,9 @@ namespace Sensors
             }
         }
 
-        private float barValue;
+        private double barValue;
 
-        public float Value
+        public double Value
         {
             get { return barValue; }
             set

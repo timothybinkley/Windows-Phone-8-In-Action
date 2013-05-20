@@ -13,7 +13,7 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True">
-    <phone:PhoneApplicationPage.ApplicationBar>
+   <!--<phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/transport.play.png"
                                             IsEnabled="True"
@@ -24,17 +24,15 @@
                                             Text="stop" 
                                             Click="stop_Click"/>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
-
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot"
-          Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <!-- LOCALIZATION NOTE:
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+   <!--LayoutRoot is the root grid where all page content is placed-->
+   <Grid x:Name="LayoutRoot"
+         Background="Transparent">
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <!-- LOCALIZATION NOTE:
             To localize the displayed strings copy their values to appropriately named
             keys in the app's neutral language resource file (AppResources.resx) then
             replace the hard-coded text value between the attributes' quotation marks
@@ -52,125 +50,123 @@
             attributes to be drawn from the .resx file that matches the
             CurrentUICulture of the app at run time.
          -->
-
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="12,17,0,28">
-            <TextBlock Text="WINDOWS PHONE 8 IN ACTION"
-                       Style="{StaticResource PhoneTextNormalStyle}"
-                       Margin="12,0" />
-            <TextBlock Text="sensors"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition Height="400" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="48" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="48" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Text="X"
-                       Grid.Column="1" />
-            <TextBlock Text="Y"
-                       Grid.Column="5" />
-            <TextBlock Text="Z"
-                       Grid.Column="9" />
-
-            <!--height of control = 400; height of postive bar = 200; max value = 2;  
+      <!--TitlePanel contains the name of the application and page title-->
+      <StackPanel x:Name="TitlePanel"
+                  Grid.Row="0"
+                  Margin="12,17,0,28">
+         <TextBlock Text="WINDOWS PHONE 8 IN ACTION"
+                    Style="{StaticResource PhoneTextNormalStyle}"
+                    Margin="12,0" />
+         <TextBlock Text="sensors"
+                    Margin="9,-7,0,0"
+                    Style="{StaticResource PhoneTextTitle1Style}" />
+      </StackPanel>
+      <!--ContentPanel - place additional content here-->
+      <Grid x:Name="ContentPanel"
+            Grid.Row="1"
+            Margin="12,0,12,0">
+         <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="400" />
+            <RowDefinition Height="*" />
+         </Grid.RowDefinitions>
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="48" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="48" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="40" />
+         </Grid.ColumnDefinitions>
+         <TextBlock Text="X"
+                    Grid.Column="1" />
+         <TextBlock Text="Y"
+                    Grid.Column="5" />
+         <TextBlock Text="Z"
+                    Grid.Column="9" />
+         <!--height of control = 400; height of postive bar = 200; max value = 2;  
                 set scale at 200/2 = 100 -->
-            <l:Bar x:Name="accelX"
-                   Grid.Row="1"
-                   Grid.Column="0"
-                   BarFill="Red"
-                   Scale="100" />
-            <l:Bar x:Name="accelY"
-                   Grid.Row="1"
-                   Grid.Column="4"
-                   BarFill="Red"
-                   Scale="100" />
-            <l:Bar x:Name="accelZ"
-                   Grid.Row="1"
-                   Grid.Column="8"
-                   BarFill="Red"
-                   Scale="100" />
-
-            <!-- height of control = 400; height of postive bar = 200; vector is normalized with max value = 1;
-                 set scale at 200/1 = 200-->
-            <l:Bar x:Name="compassX"
-                   Grid.Row="1"
-                   Grid.Column="1"
-                   BarFill="DarkGreen"
-                   Scale="200" />
-            <l:Bar x:Name="compassY"
-                   Grid.Row="1"
-                   Grid.Column="5"
-                   BarFill="DarkGreen"
-                   Scale="200" />
-            <l:Bar x:Name="compassZ"
-                   Grid.Row="1"
-                   Grid.Column="9"
-                   BarFill="DarkGreen"
-                   Scale="200" />
-
-            <!-- height of control = 400; height of postive bar = 200; reasonable max value = 2pi = 6.25 (1.5 rotation per second)
-                 set scale at 200/6.25 = 32 -->
-            <l:Bar x:Name="gyroX"
-                   Grid.Row="1"
-                   Grid.Column="2"
-                   BarFill="Blue"
-                   Scale="32" />
-            <l:Bar x:Name="gyroY"
-                   Grid.Row="1"
-                   Grid.Column="6"
-                   BarFill="Blue"
-                   Scale="32" />
-            <l:Bar x:Name="gyroZ"
-                   Grid.Row="1"
-                   Grid.Column="10"
-                   BarFill="Blue"
-                   Scale="32" />
-
-            <StackPanel Grid.Row="2"
-                        Grid.ColumnSpan="11">
-                <TextBlock Foreground="Red"
-                           Text="Accelerometer (g)" />
-                <TextBlock x:Name="heading"
-                           Foreground="DarkGreen"
-                           Text="Compass (µT)" />
-                <TextBlock Foreground="Blue"
-                           Text="Gyroscope (rad/sec)" />
-                <TextBlock x:Name="messageBlock"
-                           Text="Press start" />
-            </StackPanel >
-
-        </Grid>
-
-        <!--Uncomment to see an alignment grid to help ensure your controls are
+         <l:Bar x:Name="accelX"
+                Grid.Row="1"
+                Grid.Column="0"
+                BarFill="Red"
+                Scale="100.0" />
+         <l:Bar x:Name="accelY"
+                Grid.Row="1"
+                Grid.Column="4"
+                BarFill="Red"
+                Scale="100.0" />
+         <l:Bar x:Name="accelZ"
+                Grid.Row="1"
+                Grid.Column="8"
+                BarFill="Red"
+                Scale="100.0" />
+         <!-- height of control = 400; height of postive bar = 200;-->
+         <!-- 0->360 200/180 = 1.111111 -->
+         <l:Bar x:Name="inclineX"
+                Grid.Row="1"
+                Grid.Column="1"
+                BarFill="DarkGreen"
+                Scale="1.111111" />
+         <!-- 0->180 200/90 = 2.222222 -->
+         <l:Bar x:Name="inclineY"
+                Grid.Row="1"
+                Grid.Column="5"
+                BarFill="DarkGreen"
+                Scale="2.222222" />
+         <!-- 0->720 200/360 = 0.555556 -->
+         <l:Bar x:Name="inclineZ"
+                Grid.Row="1"
+                Grid.Column="9"
+                BarFill="DarkGreen"
+                Scale="0.555556" />
+         <!-- height of control = 400; height of postive bar = 200; reasonable max value = 180 = .5 rotations per second
+                 set scale at 200/180 = 1.111111 -->
+         <l:Bar x:Name="gyroX"
+                Grid.Row="1"
+                Grid.Column="2"
+                BarFill="Blue"
+                Scale="1.111111" />
+         <l:Bar x:Name="gyroY"
+                Grid.Row="1"
+                Grid.Column="6"
+                BarFill="Blue"
+                Scale="1.111111" />
+         <l:Bar x:Name="gyroZ"
+                Grid.Row="1"
+                Grid.Column="10"
+                BarFill="Blue"
+                Scale="1.111111" />
+         <StackPanel Grid.Row="2"
+                     Grid.ColumnSpan="11">
+            <TextBlock Foreground="Red"
+                       Text="Accelerometer (g)" />
+            <TextBlock Foreground="DarkGreen"
+                       Text="Inclinometer (degrees)" />
+            <TextBlock Foreground="Blue"
+                       Text="Gyroscope (rad/sec)" />
+            <TextBlock x:Name="heading"
+                       Foreground="DarkGreen"
+                       Text="Compass" />
+            <TextBlock x:Name="point"
+                       Foreground="Violet"
+                       Text="" />
+            <TextBlock x:Name="messageBlock"
+                       Text=""
+                       TextWrapping="Wrap" />
+         </StackPanel >
+      </Grid>
+      <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to
             account for the System Tray. Set this to 0 (or remove the margin altogether)
             if the System Tray is hidden.
 
             Before shipping remove this XAML and the image itself.-->
-        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
-    </Grid>
-
+      <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+   </Grid>
 </phone:PhoneApplicationPage>
