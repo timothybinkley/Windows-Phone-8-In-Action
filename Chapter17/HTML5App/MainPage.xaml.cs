@@ -58,7 +58,7 @@ namespace HTML5App
       {
          var task = new WebBrowserTask
          {
-            Uri = new Uri("http://www.manning.com/perga")
+            Uri = new Uri("http://www.manning.com/binkley")
          };
          task.Show();
       }
