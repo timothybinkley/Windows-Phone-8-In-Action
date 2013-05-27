@@ -13,18 +13,6 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True">
-   <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/transport.play.png"
-                                            IsEnabled="True"
-                                            Text="start" 
-                                            Click="start_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/cancel.png"
-                                            IsEnabled="True"
-                                            Text="stop" 
-                                            Click="stop_Click"/>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
    <!--LayoutRoot is the root grid where all page content is placed-->
    <Grid x:Name="LayoutRoot"
          Background="Transparent">
@@ -106,52 +94,52 @@
                 Grid.Column="8"
                 BarFill="Red"
                 Scale="100.0" />
+         <!-- height of control = 400; height of postive bar = 200; reasonable max value = 180 = .5 rotations per second
+                 set scale at 200/180 = 1.111111 -->
+         <l:Bar x:Name="gyroX"
+                Grid.Row="1"
+                Grid.Column="1"
+                BarFill="Blue"
+                Scale="1.111111" />
+         <l:Bar x:Name="gyroY"
+                Grid.Row="1"
+                Grid.Column="5"
+                BarFill="Blue"
+                Scale="1.111111" />
+         <l:Bar x:Name="gyroZ"
+                Grid.Row="1"
+                Grid.Column="9"
+                BarFill="Blue"
+                Scale="1.111111" />
          <!-- height of control = 400; height of postive bar = 200;-->
          <!-- 0->360 200/180 = 1.111111 -->
          <l:Bar x:Name="inclineX"
                 Grid.Row="1"
-                Grid.Column="1"
+                Grid.Column="2"
                 BarFill="DarkGreen"
                 Scale="1.111111" />
          <!-- 0->180 200/90 = 2.222222 -->
          <l:Bar x:Name="inclineY"
                 Grid.Row="1"
-                Grid.Column="5"
+                Grid.Column="6"
                 BarFill="DarkGreen"
                 Scale="2.222222" />
          <!-- 0->720 200/360 = 0.555556 -->
          <l:Bar x:Name="inclineZ"
                 Grid.Row="1"
-                Grid.Column="9"
+                Grid.Column="10"
                 BarFill="DarkGreen"
                 Scale="0.555556" />
-         <!-- height of control = 400; height of postive bar = 200; reasonable max value = 180 = .5 rotations per second
-                 set scale at 200/180 = 1.111111 -->
-         <l:Bar x:Name="gyroX"
-                Grid.Row="1"
-                Grid.Column="2"
-                BarFill="Blue"
-                Scale="1.111111" />
-         <l:Bar x:Name="gyroY"
-                Grid.Row="1"
-                Grid.Column="6"
-                BarFill="Blue"
-                Scale="1.111111" />
-         <l:Bar x:Name="gyroZ"
-                Grid.Row="1"
-                Grid.Column="10"
-                BarFill="Blue"
-                Scale="1.111111" />
          <StackPanel Grid.Row="2"
                      Grid.ColumnSpan="11">
             <TextBlock Foreground="Red"
                        Text="Accelerometer (g)" />
+            <TextBlock Foreground="Blue"
+                       Text="Gyroscope (deg/sec)" />
             <TextBlock Foreground="DarkGreen"
                        Text="Inclinometer (degrees)" />
-            <TextBlock Foreground="Blue"
-                       Text="Gyroscope (rad/sec)" />
             <TextBlock x:Name="heading"
-                       Foreground="DarkGreen"
+                       Foreground="Yellow"
                        Text="Compass" />
             <TextBlock x:Name="point"
                        Foreground="Violet"
