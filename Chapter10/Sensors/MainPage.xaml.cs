@@ -1,172 +1,200 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
+﻿//using Microsoft.Devices.Sensors;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Sensors.Resources;
+using System;
+using System.IO;
+using System.Windows.Media.Media3D;
 using System.Windows.Threading;
-using Microsoft.Devices.Sensors;
-using Microsoft.Xna.Framework;
-
+using Windows.Devices.Geolocation;
+using Windows.Devices.Sensors;
 
 namespace Sensors
 {
-    public partial class MainPage : PhoneApplicationPage
-    {
-        DispatcherTimer timer;
-        Accelerometer accelSensor;
-        Compass compassSensor;
-        Gyroscope gyroSensor;
+   public partial class MainPage : PhoneApplicationPage
+   {
+      DispatcherTimer timer;
+      Accelerometer accelSensor;
+      Compass compassSensor;
+      Gyrometer gyroSensor;
+      Inclinometer inclineSensor;
+      OrientationSensor orientationSensor;
 
-        // Constructor
-        public MainPage()
-        {
-            InitializeComponent();
+      // Constructor
+      public MainPage()
+      {
+         InitializeComponent();
 
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
+         // Sample code to localize the ApplicationBar
+         //BuildLocalizedApplicationBar();
 
-            timer = new DispatcherTimer();
-            timer.Tick += timer_Tick;
-            timer.Interval = TimeSpan.FromMilliseconds(66);
-            
-            if (Accelerometer.IsSupported)
+         timer = new DispatcherTimer();
+         timer.Tick += timer_Tick;
+         timer.Interval = TimeSpan.FromMilliseconds(66);
+
+         start();
+      }
+
+      // Sample code for building a localized ApplicationBar
+      //private void BuildLocalizedApplicationBar()
+      //{
+      //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
+      //    ApplicationBar = new ApplicationBar();
+
+      //    // Create a new button and set the text value to the localized string from AppResources.
+      //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
+      //    appBarButton.Text = AppResources.AppBarButtonText;
+      //    ApplicationBar.Buttons.Add(appBarButton);
+
+      //    // Create a new menu item with the localized string from AppResources.
+      //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
+      //    ApplicationBar.MenuItems.Add(appBarMenuItem);
+      //}
+
+      private async void start()
+      {
+         if (!timer.IsEnabled)
+         {
+            string runningMessage = "Reading: ";
+
+            accelSensor = Accelerometer.GetDefault();
+            if (accelSensor != null)
             {
-                accelSensor = new Accelerometer();
-                accelSensor.TimeBetweenUpdates = TimeSpan.FromMilliseconds(66);
+               accelSensor.ReportInterval = 66;
+               runningMessage += "Accelerometer ";
             }
 
-            if (Compass.IsSupported)
+            // while not shown in the chapter, get the current location so that 
+            // true heading is more accurate.
+            Geolocator locator = new Geolocator();
+            await locator.GetGeopositionAsync();
+
+            compassSensor = Compass.GetDefault();
+            if (compassSensor != null)
             {
-                compassSensor = new Compass();
-                compassSensor.TimeBetweenUpdates = TimeSpan.FromMilliseconds(66);
-                compassSensor.Calibrate += compassSensor_Calibrate;
+               compassSensor.ReportInterval = 66;
+               runningMessage += "Compass ";
             }
 
-            if (Gyroscope.IsSupported)
+            try
             {
-                gyroSensor = new Gyroscope();
-                gyroSensor.TimeBetweenUpdates = TimeSpan.FromMilliseconds(66);
+               gyroSensor = Gyrometer.GetDefault();
             }
-        }
+            catch (FileNotFoundException) { }
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
-
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
-              
-        private void start_Click(object sender, EventArgs e)
-        {
-            if (!timer.IsEnabled)
+            if (gyroSensor != null)
             {
-                string runningMessage = "Reading: ";
-                if (Accelerometer.IsSupported)
-                {
-                    accelSensor.Start();
-                    runningMessage += "Accelerometer ";
-                }
-
-                if (Compass.IsSupported)
-                {
-                    compassSensor.Start();
-                    runningMessage += "Compass ";
-                }
-
-                if (Gyroscope.IsSupported)
-                {
-                    gyroSensor.Start();
-                    runningMessage += "Gyroscope ";
-                }
-
-                timer.Start();
-                messageBlock.Text = runningMessage;
+               gyroSensor.ReportInterval = 66;
+               runningMessage += "Gyroscope ";
             }
-        }
 
-        private void stop_Click(object sender, EventArgs e)
-        {
-            timer.Stop();
-            if (Accelerometer.IsSupported)
-                accelSensor.Stop();
-            if (Compass.IsSupported)
-                compassSensor.Stop();
-            if (Gyroscope.IsSupported)
-                gyroSensor.Stop();
-            messageBlock.Text = "Press start";
-        }
-
-        void timer_Tick(object sender, EventArgs e)
-        {
-            ReadAccelerometerData();
-            ReadCompassData();
-            ReadGyroscopeData();
-        }
-
-        private void ReadAccelerometerData()
-        {
-            if (Accelerometer.IsSupported)
+            inclineSensor = Inclinometer.GetDefault();
+            if (inclineSensor != null)
             {
-                AccelerometerReading reading = accelSensor.CurrentValue;
-                Vector3 acceleration = reading.Acceleration;
-                // height of control = 400; height of postive bar = 200; max value = 2;  
-                // set scale at 200/2 = 100  
-                accelX.Value = acceleration.X;
-                accelY.Value = acceleration.Y;
-                accelZ.Value = acceleration.Z;
+               inclineSensor.ReportInterval = 66;
+               runningMessage += "Inclinometer ";
             }
-        }
 
-        void ReadCompassData()
-        {
-            if (Compass.IsSupported && compassSensor.IsDataValid)
+            orientationSensor = OrientationSensor.GetDefault();
+            if (orientationSensor != null)
             {
-                CompassReading reading = compassSensor.CurrentValue;
-                Vector3 magnetic = reading.MagnetometerReading;
-                magnetic.Normalize();
-                // height of control = 400; height of postive bar = 200; vector is normalized with max value = 1;
-                // set scale at 200/1 = 200
-                compassX.Value = magnetic.X;
-                compassY.Value = magnetic.Y;
-                compassZ.Value = magnetic.Z;
-
-                heading.Text = string.Format("Compass (µT)        Heading {0:F} +/- {1:F} degrees", reading.TrueHeading, reading.HeadingAccuracy);
+               orientationSensor.ReportInterval = 66;
+               runningMessage += "Orientation ";
             }
-        }
 
-        void ReadGyroscopeData()
-        {
-            if (Gyroscope.IsSupported)
+            timer.Start();
+            messageBlock.Text = runningMessage;
+         }
+      }
+
+      void timer_Tick(object sender, EventArgs e)
+      {
+         ReadAccelerometerData();
+         ReadCompassData();
+         ReadGyrometerData();
+         ReadInclinometerData();
+         ReadOrientationData();
+      }
+
+      void ReadAccelerometerData()
+      {
+         if (accelSensor != null)
+         {
+            AccelerometerReading reading = accelSensor.GetCurrentReading();
+            if (reading != null)
             {
-                GyroscopeReading reading = gyroSensor.CurrentValue;
-                Vector3 rotation = reading.RotationRate;
-                // height of control = 400; height of postive bar = 200; reasonable max value = 2pi = 6.25 (1.5 rotation per second)
-                // set scale at 200/6.25 = 32
-                gyroX.Value = rotation.X;
-                gyroY.Value = rotation.Y;
-                gyroZ.Value = rotation.Z;
+               accelX.Value = reading.AccelerationX;
+               accelY.Value = reading.AccelerationY;
+               accelZ.Value = reading.AccelerationZ;
             }
-        }
+         }
+      }
 
-        void compassSensor_Calibrate(object sender, CalibrationEventArgs e)
-        {
-            Dispatcher.BeginInvoke(() =>
-                MessageBox.Show("The compass sensor needs to be calibrated. Wave the phone around in the air until the heading accuracy value is less than 20 degrees")
-            );
-        }
-    }
+      void ReadCompassData()
+      {
+         if (compassSensor != null)
+         {
+            CompassReading reading = compassSensor.GetCurrentReading();
+            if (reading != null)
+            {
+               heading.Text = string.Format(
+                  "Magnetic Heading={0:F0}° True Heading={1:F0}°",  
+                 reading.HeadingMagneticNorth, reading.HeadingTrueNorth);
+            }
+         }
+      }
+
+      void ReadGyrometerData()
+      {
+         if (gyroSensor != null)
+         {
+            GyrometerReading reading = gyroSensor.GetCurrentReading();
+            if (reading != null)
+            {
+               gyroX.Value = reading.AngularVelocityX;
+               gyroY.Value = reading.AngularVelocityY;
+               gyroZ.Value = reading.AngularVelocityZ;
+            }
+         }
+      }
+
+      void ReadInclinometerData()
+      {
+         if (inclineSensor != null)
+         {
+            InclinometerReading reading = inclineSensor.GetCurrentReading();
+            if (reading != null)
+            {
+               inclineX.Value = reading.PitchDegrees;
+               inclineY.Value = reading.RollDegrees;
+               inclineZ.Value = reading.YawDegrees;
+            }
+         }
+      }
+
+      static readonly Matrix3D pointMatrix = new Matrix3D(
+                  0, 0, 0, 0,
+                  0, 0, 0, 0,
+                  0, 0, 0, 0,
+                  0, 10.0, 0, 1);
+
+      void ReadOrientationData()
+      {
+         if (orientationSensor != null)
+         {
+            OrientationSensorReading reading = orientationSensor.GetCurrentReading();
+            if (reading != null)
+            {
+               SensorRotationMatrix srm = reading.RotationMatrix;
+               Matrix3D rotationMatrix = new Matrix3D(
+                  srm.M11, srm.M12, srm.M13, 0,
+                  srm.M21, srm.M22, srm.M23, 0,
+                  srm.M31, srm.M32, srm.M33, 0,
+                  0, 0, 0, 0);
+
+               Matrix3D bodySpaceMatrix = pointMatrix * rotationMatrix;
+               point.Text = string.Format("Transform of (0.0, 10.0, 0.0) = ({0:F1}, {1:F1}, {2:F1})",
+                   bodySpaceMatrix.OffsetX, bodySpaceMatrix.OffsetY, bodySpaceMatrix.OffsetZ);
+            }
+         }
+      }
+   }
 }

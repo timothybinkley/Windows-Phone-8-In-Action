@@ -1,0 +1,81 @@
+﻿@media all and (orientation:portrait) {
+    @-ms-viewport {
+        width:480px;
+		user-zoom: fixed;
+        max-zoom: 1;
+        min-zoom: 1;
+    }
+}
+
+@media all and (orientation:landscape) {
+    @-ms-viewport {
+        width:768px;
+        user-zoom: fixed;
+        max-zoom: 1;
+        min-zoom: 1;
+    }
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-size: 20px;
+    font-family: "Segoe WP";
+    letter-spacing: 0.02em;
+    background-color: #000000;
+    color: #ffffff;
+    margin-left: 24px;
+}
+
+ellipse, path {
+        fill: transparent; stroke: #1BA1E2; stroke-width: 5px; 
+}
+
+svg {
+    margin-left: 120px; margin-right: 160px;
+}
+
+button{
+  color: white; background: transparent; text-decoration: none;
+  border-style: solid; border-color: white; border-width: 3px;
+  font-size:25.33px; font-family:Segoe WP Semibold;
+  padding-left: 10px; padding-top: 3px; 
+  padding-right: 10px; padding-bottom: 5px;
+}
+
+header {
+	margin-top: 17px;
+	margin-bottom: 43px;
+}
+
+h1 {
+    font-size: 72px;
+    font-weight: normal;
+    margin-top: -5px;
+    margin-left: -6px;
+	margin-bottom: -10px;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin-top: 0px;
+	margin-bottom: -10px;
+}
+
+section {
+    height: 250px;
+}
+
+input {
+	display: block;
+    font-size: 25.333px;
+	width: 400px;
+	margin-top: 12px;
+	padding: 9px;
+}

@@ -52,7 +52,7 @@ namespace HelloWorld
                 WideBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative),
                 BackTitle = string.Format("Hello {0}!", helloMessage.Text),
                 BackContent = "Windows Phone 8 in Action",
-                WideBackContent = "Windows Phone 8 in Action. Written by Timothy Binkley-Jones, Massimo Perga and Micheal Sync",
+                WideBackContent = "Windows Phone 8 in Action. Written by Binkley-Jones, Perga, Sync, and Benoit.",
             };
             ShellTile.Create(BuildNavigationUri(helloMessage.Text), tileData, true);
         }

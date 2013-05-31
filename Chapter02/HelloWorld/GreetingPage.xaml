@@ -75,7 +75,7 @@
                            Foreground="{StaticResource PhoneAccentBrush}">
                     <Italic>Windows Phone 8 in Action</Italic>
                 </Paragraph>
-                <Paragraph FontSize="{StaticResource PhoneFontSizeNormal}">Written by Timothy Binkley-Jones, Massimo Perga, and Michael Sync.</Paragraph>
+            <Paragraph FontSize="{StaticResource PhoneFontSizeNormal}">Written by Timothy Binkley-Jones, Massimo Perga, Michael Sync, and Adam Benoit.</Paragraph>
             </RichTextBox>
 
             <!--
@@ -86,7 +86,7 @@
                            Foreground="{StaticResource PhoneAccentBrush}"
                            FontStyle="Italic">Windows Phone 8 in Action</TextBlock>
                 <TextBlock FontSize="{StaticResource PhoneFontSizeNormal}"
-                           TextWrapping="Wrap">by Timothy Binkley-Jones, Massimo Perga, and Michael Sync</TextBlock>
+                           TextWrapping="Wrap">by Timothy Binkley-Jones, Massimo Perga, Michael Sync, and Adam Benoit.</TextBlock>
             </StackPanel>
             -->
 
