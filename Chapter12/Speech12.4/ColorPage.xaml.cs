@@ -59,7 +59,9 @@ namespace Speech
         {
             try
             {
-                SpeechRecognizer speechRecognizer = new SpeechRecognizer();
+
+                SpeechRecognizerUI speechRecognizerUi = new SpeechRecognizerUI();
+                SpeechRecognizer speechRecognizer = speechRecognizerUi.Recognizer;
                 speechRecognizer.AudioCaptureStateChanged += speechRecognizer_AudioCaptureStateChanged;
                 speechRecognizer.Grammars.AddGrammarFromList("colorList", _colorNames);
 
