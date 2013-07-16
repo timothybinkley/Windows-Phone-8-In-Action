@@ -98,8 +98,8 @@
 
             <toolkit:PhoneTextBox Grid.Row="1" x:Name="nameInput" 
                                   VerticalAlignment="Top"
-                                  InputScope="Text"
-                                  Hint="Enter your first name"
+                               InputScope="Number"
+                               Hint="Enter your first name"
                                   ActionIcon="/Assets/next.png"
                                   ActionIconTapped="nameInput_ActionIconTapped" />
         </Grid>

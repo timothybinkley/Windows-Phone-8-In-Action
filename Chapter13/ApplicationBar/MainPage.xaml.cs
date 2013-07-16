@@ -20,7 +20,8 @@ namespace ApplicationBar
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
-            InitializeApplicationBar();
+            button1 = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+            menuItem1 = (ApplicationBarMenuItem)ApplicationBar.MenuItems[0];
         }
 
         // Sample code for building a localized ApplicationBar
@@ -39,12 +40,6 @@ namespace ApplicationBar
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
               
-        private void InitializeApplicationBar()
-        {
-            button1 = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
-            menuItem1 = (ApplicationBarMenuItem)ApplicationBar.MenuItems[0];
-        }
-
         private void item_Clicked(object sender, EventArgs e)
         {
             var button = sender as ApplicationBarIconButton;

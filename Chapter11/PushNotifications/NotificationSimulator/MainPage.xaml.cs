@@ -25,10 +25,10 @@ namespace NotificationSimulator
 
          DeviceNetworkInformation.NetworkAvailabilityChanged +=
              (sender, e) =>
-             {
-                System.Diagnostics.Debug.WriteLine("Network changed");
-                LoadInformation(e.NotificationType.ToString());
-             };
+         {
+            System.Diagnostics.Debug.WriteLine("Network changed");
+            LoadInformation(e.NotificationType.ToString());
+         };
 
          string savedUri;
          if (IsolatedStorageSettings.ApplicationSettings.TryGetValue("ChannelUri", out savedUri))

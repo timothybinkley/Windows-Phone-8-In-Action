@@ -184,12 +184,14 @@ namespace PhotoEditor
       {
          try
          {
-            ExifReader reader = new ExifReader(imageStream);
-            ushort orientation;
-            if (reader.GetTagValue(ExifTags.Orientation, out orientation))
+            using (ExifReader reader = new ExifReader(imageStream))
             {
-               System.Diagnostics.Debug.WriteLine("{0} {1}", orientation.GetType().Name, orientation.ToString());
-               return orientation;
+               ushort orientation;
+               if (reader.GetTagValue(ExifTags.Orientation, out orientation))
+               {
+                  System.Diagnostics.Debug.WriteLine("{0} {1}", orientation.GetType().Name, orientation.ToString());
+                  return orientation;
+               }
             }
          }
          catch (ExifLibException) { }

@@ -30,7 +30,7 @@ namespace Sensors
          timer.Tick += timer_Tick;
          timer.Interval = TimeSpan.FromMilliseconds(66);
 
-         start();
+         Start();
       }
 
       // Sample code for building a localized ApplicationBar
@@ -49,7 +49,7 @@ namespace Sensors
       //    ApplicationBar.MenuItems.Add(appBarMenuItem);
       //}
 
-      private async void start()
+      private async void Start()
       {
          if (!timer.IsEnabled)
          {

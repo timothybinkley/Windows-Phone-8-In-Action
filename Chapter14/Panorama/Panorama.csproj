@@ -121,8 +121,8 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\PanoramaBackground.jpg" />
-    <Content Include="Assets\PanoramaLogo.png" />
+    <Resource Include="Assets\PanoramaBackground.jpg" />
+    <Resource Include="Assets\PanoramaLogo.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

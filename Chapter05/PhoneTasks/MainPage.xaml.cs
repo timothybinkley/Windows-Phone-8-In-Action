@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using PhoneTasks.Resources;
-using Microsoft.Phone.Tasks;
+﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Marketplace;
+using Microsoft.Phone.Tasks;
+using System;
+using System.Windows;
+using System.Windows.Navigation;
 
 
 namespace PhoneTasks

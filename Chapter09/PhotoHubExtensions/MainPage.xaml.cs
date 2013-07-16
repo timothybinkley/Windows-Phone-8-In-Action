@@ -290,12 +290,14 @@ namespace PhotoEditor
       {
          if (currentImage != null)
          {
-            var stream = new MemoryStream();
-            currentImage.SaveJpeg(stream, currentImage.PixelWidth, currentImage.PixelHeight, 0, 100);
-            stream.Seek(0, 0);
-            var library = new MediaLibrary();
-            Picture p = library.SavePicture("customphoto.jpg", stream);
-            imageDetails.Text = string.Format("Image saved to media library.\nFilename:\ncustomphoto.jpg");
+            using (var stream = new MemoryStream())
+            {
+               currentImage.SaveJpeg(stream, currentImage.PixelWidth, currentImage.PixelHeight, 0, 100);
+               stream.Seek(0, 0);
+               var library = new MediaLibrary();
+               Picture p = library.SavePicture("customphoto.jpg", stream);
+               imageDetails.Text = string.Format("Image saved to media library.\nFilename:\ncustomphoto.jpg");
+            }
          }
       }
 

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.0">
+  <CommandSet xml:lang="en-US" Name="EnglishCommands">
+    <CommandPrefix>Speech Sample</CommandPrefix>
+    <Example>set voice to Adam</Example>
+
+    <Command Name="RepeatPhraseCommand">
+      <Example> repeat phrase </Example>
+      <ListenFor> [and] repeat [phrase] </ListenFor>
+      <ListenFor> [and] repeat [phrase] as {voice} </ListenFor>
+      <Feedback> repeat phrase... </Feedback>
+      <Navigate Target="RepeatPhrase.xaml" />
+    </Command>
+ 
+    <PhraseList Label="voice">
+      <Item>Adam</Item>
+    </PhraseList> 
+
+  </CommandSet>
+</VoiceCommands>

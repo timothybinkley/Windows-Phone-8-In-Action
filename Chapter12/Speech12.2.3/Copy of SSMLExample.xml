@@ -1,0 +1,18 @@
+﻿<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xml:lang="en-US">
+  <voice xml:lang="en-gb" gender="male">
+    <s xml:lang="en-us">
+      Today is not<say-as interpret-as="date" format="dmy">12-25-2020</say-as>
+      at <say-as interpret-as="time" format="hms12">7:17am</say-as>. Or is it?
+    </s>
+    <s>
+      We are <say-as interpret-as="cardinal">5</say-as> days in. 
+      It is the <say-as interpret-as="ordinal">5th</say-as> day.
+    </s>
+    <s>
+      Jenny Jenny, Who can I turn to?
+      <say-as interpret-as="telephone" format="1">867-5309</say-as>.
+    </s>
+  </voice>
+</speak>
